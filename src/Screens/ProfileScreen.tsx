@@ -11,7 +11,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-const MainPage = () => {
+const ProfileScreen = () => {
   return (
     <ScrollView style={styles.container}>
       {/* Header */}
@@ -124,7 +124,7 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default ProfileScreen;
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff", padding: 16 },

@@ -20,7 +20,7 @@ import '../i18n'; // make sure this file is correctly set up
 
 type NavigationProp = NativeStackNavigationProp<MainStackParamList>;
 
-const HealthConnect = () => {
+const LoginPage = () => {
   const { t, i18n } = useTranslation();
   const [mobile, setMobile] = useState('');
   const { width } = useWindowDimensions();
@@ -115,7 +115,7 @@ const HealthConnect = () => {
         {/* Send OTP button */}
         <TouchableOpacity
           style={styles.otpButton}
-          onPress={() => navigation.navigate('MainPage')}
+          onPress={() => navigation.navigate('MainTabs')}
         >
           <Feather name="send" size={20} color="white" />
           <Text style={styles.otpText}>{t('sendOtp')}</Text>
@@ -159,7 +159,7 @@ const HealthConnect = () => {
   );
 };
 
-export default HealthConnect;
+export default LoginPage;
 
 const styles = StyleSheet.create({
   background: {
