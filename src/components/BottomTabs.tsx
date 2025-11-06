@@ -5,7 +5,7 @@ import HomeScreen from '../Screens/HomeScreen';
 import LearningScreen from '../Screens/LearningScreen';
 import ShopScreen from '../Screens/ShopScreen';
 import InventoryScreen from '../Screens/InventoryScreen';
-import ProfileScreen from '../Screens/ProfileScreen';
+import ProfileScreen from '../Screens/SHG/ShgScreen';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 

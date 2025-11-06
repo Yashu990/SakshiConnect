@@ -12,4 +12,15 @@ export type MainStackParamList = {
     StarterKit: undefined;
     InventoryScreen: undefined;
     OdersScreen: undefined;
+    BusinessDetailsScreen: undefined;
+    OrdersPage: undefined;
+    DistibuterHome: undefined;
+    CreateOrder: undefined;
+    ManageOrder: undefined;
+    CreateOrderPage: undefined;
+    AddProductScreen: undefined;
+    ShgScreen: undefined;
+    CreateProductModal: undefined;
+    AddProductModalProps: undefined;
+    PlaceOrderScreen : undefined;
 }

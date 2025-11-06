@@ -14,6 +14,17 @@ import ReusablePads from '../Screens/Learning/ReusablePads';
 import StraterKit from '../Screens/Learning/StraterKit';
 import InventoryScreen from '../Screens/InventoryScreen';
 import OrdersScreen from '../Screens/OdersScreen';
+import BusinessDetailsScreen from '../Screens/BusinessDetailsScreen';
+import OrdersPage from '../Screens/Distibutor/DistibuterHome';
+import DistibuterHome from '../Screens/Distibutor/DistibuterHome';
+import InventoryPage from '../Screens/Distibutor/ManageOrder';
+import CreateOderPage from '../Screens/Distibutor/CreateOrderPage ';
+import ManageOrder from '../Screens/Distibutor/ManageOrder';
+import AddProductScreen from '../Screens/Distibutor/AddProductScreen';
+
+import PlaceOrderScreen from '../Screens/SHG/PlaceOrderScreen ';
+import ShgScreen from '../Screens/SHG/ShgScreen';
+
 
 
 
@@ -39,6 +50,14 @@ const MainStack = () => {
       <Stack.Screen name='StarterKit' component={StraterKit}/> 
       <Stack.Screen name='InventoryScreen' component={InventoryScreen}/> 
       <Stack.Screen name='OdersScreen' component={OrdersScreen}/>
+      <Stack.Screen name='BusinessDetailsScreen' component={BusinessDetailsScreen}/>
+      <Stack.Screen name='OrdersPage' component={OrdersPage}/>
+      <Stack.Screen name='DistibuterHome' component={DistibuterHome}/>
+      <Stack.Screen name='CreateOrderPage'component={CreateOderPage}/>
+      <Stack.Screen name='ManageOrder' component={ManageOrder}/>
+      <Stack.Screen name='AddProductScreen' component={AddProductScreen}/>
+      <Stack.Screen name='ShgScreen' component={ShgScreen}/>
+      <Stack.Screen name='PlaceOrderScreen' component={PlaceOrderScreen}/>
     </Stack.Navigator>
   )
 }

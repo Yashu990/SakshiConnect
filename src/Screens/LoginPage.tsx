@@ -16,7 +16,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MainStackParamList } from '../Navigation/types';
 import { useTranslation } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import '../i18n'; // make sure this file is correctly set up
+import '../i18n';
 
 type NavigationProp = NativeStackNavigationProp<MainStackParamList>;
 
@@ -26,23 +26,37 @@ const LoginPage = () => {
   const { width } = useWindowDimensions();
   const navigation = useNavigation<NavigationProp>();
 
-  // ✅ Available languages
+  // ✅ Hardcoded users with role info
+  const users: Record<string, { role: string; name: string; screen: string }> = {
+    '9999999999': { role: 'Distributor', name: 'John Distributor', screen: 'DistibuterHome' },
+    '8888888888': { role: 'SHG', name: 'Meena SHG', screen: 'ShgScreen' },
+    '7777777777': { role: 'Pharmacist', name: 'Ravi Pharmacist', screen: 'PharmacistHome' },
+  };
+
   const languages = [
     { label: 'English', code: 'en' },
     { label: 'हिंदी', code: 'hi' },
     { label: 'ଓଡ଼ିଆ', code: 'or' },
   ];
 
-  // ✅ OTP Button (example)
-  const handleSendOTP = () => {
+  // ✅ Handle login logic
+ const handleSendOTP = async () => {
     if (mobile.length !== 10) {
-      Alert.alert(t('invalidMobile'));
+      Alert.alert('Invalid Mobile Number', 'Please enter a valid 10-digit number.');
       return;
     }
-    Alert.alert(`${t('otpSent')} +91 ${mobile}`);
+
+    const user = users[mobile];
+    if (user) {
+      await AsyncStorage.setItem('userData', JSON.stringify(user));
+      Alert.alert(`✅ Login Successful`, `Welcome ${user.name} (${user.role})`);
+      navigation.navigate(user.screen as never); // 👈 Navigate to specific role home
+    } else {
+      Alert.alert('❌ Invalid User', 'This number is not registered.');
+    }
   };
 
-  // ✅ Change language + Save preference
+  // ✅ Handle language switch
   const handleLanguageChange = async (langCode: string) => {
     await i18n.changeLanguage(langCode);
     await AsyncStorage.setItem('appLang', langCode);
@@ -53,7 +67,6 @@ const LoginPage = () => {
       source={require('../images/backimg.png')}
       style={styles.background}
     >
-      {/* Background overlay for soft opacity */}
       <View style={styles.overlay} />
 
       <View style={styles.container}>
@@ -63,7 +76,7 @@ const LoginPage = () => {
           <Ionicons name="headset-outline" size={22} color="#0a0a0a" />
         </View>
 
-        {/* Logo */}
+        {/* Logo section */}
         <View style={styles.logoContainer}>
           <View style={styles.logoCircle}>
             <Ionicons name="heart-outline" size={36} color="white" />
@@ -72,7 +85,7 @@ const LoginPage = () => {
           <Text style={styles.subtitle}>{t('Rural Healthcare Distribution')}</Text>
         </View>
 
-        {/* Language selection */}
+        {/* Language section */}
         <View style={styles.langSection}>
           <Text style={styles.langLabel}>{t('selectLanguage')}</Text>
           <View style={styles.langButtons}>
@@ -98,7 +111,7 @@ const LoginPage = () => {
           </View>
         </View>
 
-        {/* Input field */}
+        {/* Mobile input */}
         <Text style={styles.inputLabel}>{t('mobileNumber')}</Text>
         <View style={styles.inputContainer}>
           <Text style={styles.prefix}>+91</Text>
@@ -112,11 +125,8 @@ const LoginPage = () => {
           />
         </View>
 
-        {/* Send OTP button */}
-        <TouchableOpacity
-          style={styles.otpButton}
-          onPress={() => navigation.navigate('MainTabs')}
-        >
+        {/* Login / OTP button */}
+        <TouchableOpacity style={styles.otpButton} onPress={handleSendOTP}>
           <Feather name="send" size={20} color="white" />
           <Text style={styles.otpText}>{t('sendOtp')}</Text>
         </TouchableOpacity>
@@ -136,7 +146,7 @@ const LoginPage = () => {
           </Text>
         </TouchableOpacity>
 
-        {/* Bottom help section */}
+        {/* Bottom help buttons */}
         <View style={styles.helpContainer}>
           <TouchableOpacity style={styles.helpItem}>
             <Ionicons name="mic-outline" size={28} color="#141414" />

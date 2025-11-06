@@ -10,8 +10,13 @@ import {
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { MainStackParamList } from '../../Navigation/types';
+type NavigationProp = NativeStackNavigationProp<MainStackParamList>;
 
-const ProfileScreen = () => {
+const ShgScreen = () => {
+  const navigation = useNavigation<NavigationProp>();
   return (
     <ScrollView style={styles.container}>
       {/* Header */}
@@ -43,7 +48,7 @@ const ProfileScreen = () => {
 
       {/* Actions */}
       <View style={styles.actionsRow}>
-        <TouchableOpacity style={styles.actionCard}>
+        <TouchableOpacity style={styles.actionCard} onPress={() => navigation.navigate('PlaceOrderScreen')}>
           <Ionicons name="cart-outline" size={28} color="#4C6EF5" />
           <Text style={styles.actionTitle}>New Order</Text>
           <Text style={styles.actionSubtitle}>Place bulk order</Text>
@@ -124,7 +129,7 @@ const ProfileScreen = () => {
   );
 };
 
-export default ProfileScreen;
+export default ShgScreen;
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff", padding: 16 },

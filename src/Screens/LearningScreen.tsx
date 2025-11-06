@@ -3,59 +3,58 @@ import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'rea
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MainStackParamList } from '../Navigation/types';
+import { useTranslation } from 'react-i18next'; // 👈 Add this
 
 type NavigationProp = NativeStackNavigationProp<MainStackParamList>;
+
 const LearningScreen = () => {
   const navigation = useNavigation<NavigationProp>();
+  const { t } = useTranslation(); // 👈 Initialize translator
+
   return (
     <View style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.heading}>Learning</Text>
-        <Text style={styles.subHeading}>
-          Pick a product → see all instructions on one page.
-        </Text>
+        <Text style={styles.heading}>{t('learningTitle')}</Text>
+        <Text style={styles.subHeading}>{t('learningSubtitle')}</Text>
 
         <View style={styles.grid}>
           {/* Card 1 */}
-          <TouchableOpacity onPress={()=>navigation.navigate('MenstrualCup')} style={styles.card}>
+          <TouchableOpacity onPress={() => navigation.navigate('MenstrualCup')} style={styles.card}>
             <View style={styles.iconContainer}>
               <Image source={require('../images/cup.png')} style={styles.icon} />
             </View>
-            <Text style={styles.title}>Menstrual Cup</Text>
-            <Text style={styles.details}>Text • Images • Audio • YouTube</Text>
+            <Text style={styles.title}>{t('menstrualCup')}</Text>
+            <Text style={styles.details}>{t('learningDetails')}</Text>
           </TouchableOpacity>
 
           {/* Card 2 */}
-          <TouchableOpacity onPress={()=>navigation.navigate('ReusablePads')} style={styles.card}>
+          <TouchableOpacity onPress={() => navigation.navigate('ReusablePads')} style={styles.card}>
             <View style={styles.iconContainer}>
               <Image source={require('../images/pad.png')} style={styles.icon} />
             </View>
-            <Text style={styles.title}>Reusable Pads</Text>
-            <Text style={styles.details}>Text • Images • Audio • YouTube</Text>
+            <Text style={styles.title}>{t('reusablePads')}</Text>
+            <Text style={styles.details}>{t('learningDetails')}</Text>
           </TouchableOpacity>
 
           {/* Card 3 */}
-          <TouchableOpacity onPress={()=>navigation.navigate("PeriodPanties")} style={styles.card}>
+          <TouchableOpacity onPress={() => navigation.navigate('PeriodPanties')} style={styles.card}>
             <View style={styles.iconContainer}>
               <Image source={require('../images/liner.png')} style={styles.icon} />
             </View>
-            <Text style={styles.title}>Period Panties</Text>
-            <Text style={styles.details}>Text • Images • Audio • YouTube</Text>
+            <Text style={styles.title}>{t('periodPanties')}</Text>
+            <Text style={styles.details}>{t('learningDetails')}</Text>
           </TouchableOpacity>
 
           {/* Card 4 */}
-          <TouchableOpacity onPress={()=>navigation.navigate("StarterKit")} style={styles.card}>
+          <TouchableOpacity onPress={() => navigation.navigate('StarterKit')} style={styles.card}>
             <View style={styles.iconContainer}>
               <Image source={require('../images/reuse.png')} style={styles.icon} />
             </View>
-            <Text style={styles.title}>Starter Kit</Text>
-            <Text style={styles.details}>Text • Images • Audio • YouTube</Text>
+            <Text style={styles.title}>{t('starterKit')}</Text>
+            <Text style={styles.details}>{t('learningDetails')}</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
-
-      {/* ✅ Fixed Footer at bottom */}
-      {/* <Footer /> */}
     </View>
   );
 };
@@ -64,11 +63,10 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: '#F8FAFC',
-    
   },
   container: {
     padding: 20,
-    paddingBottom: 100, // add space so footer doesn’t overlap scroll content
+    paddingBottom: 100,
   },
   heading: {
     fontSize: 28,
