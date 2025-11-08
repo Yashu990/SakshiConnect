@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { 
-  View, 
-  Text, 
-  TextInput, 
-  TouchableOpacity, 
-  StyleSheet, 
-  Alert, 
-  ImageBackground, 
-  useWindowDimensions 
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  ImageBackground,
+  useWindowDimensions,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
@@ -29,8 +29,8 @@ const LoginPage = () => {
   // ✅ Hardcoded users with role info
   const users: Record<string, { role: string; name: string; screen: string }> = {
     '9999999999': { role: 'Distributor', name: 'John Distributor', screen: 'DistibuterHome' },
-    '8888888888': { role: 'SHG', name: 'Meena SHG', screen: 'ShgScreen' },
-    '7777777777': { role: 'Pharmacist', name: 'Ravi Pharmacist', screen: 'PharmacistHome' },
+    '8888888888': { role: 'SHG', name: 'Anjali SHG', screen: 'BottomTabs' },
+    '7777777777': { role: 'Pharmacist', name: 'Priya Pharmacist', screen: 'PharmacistScreen' },
   };
 
   const languages = [
@@ -40,7 +40,7 @@ const LoginPage = () => {
   ];
 
   // ✅ Handle login logic
- const handleSendOTP = async () => {
+  const handleSendOTP = async () => {
     if (mobile.length !== 10) {
       Alert.alert('Invalid Mobile Number', 'Please enter a valid 10-digit number.');
       return;
@@ -64,8 +64,9 @@ const LoginPage = () => {
 
   return (
     <ImageBackground
-      source={require('../images/backimg.png')}
+      source={require('../images/logo.png')}
       style={styles.background}
+         // 👈 ensures full background fit
     >
       <View style={styles.overlay} />
 
@@ -174,15 +175,19 @@ export default LoginPage;
 const styles = StyleSheet.create({
   background: {
     flex: 1,
+    resizeMode: 'stretch', 
+
   },
   overlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(255,255,255,0.29)',
+    ...StyleSheet.absoluteFill,
+    backgroundColor: 'rgba(255, 255, 255, 0.06)',
   },
+
   container: {
     flex: 1,
     paddingHorizontal: 20,
     paddingTop: 60,
+   
   },
   topBar: {
     flexDirection: 'row',

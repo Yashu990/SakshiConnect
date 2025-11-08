@@ -5,7 +5,7 @@ export type MainStackParamList = {
     DistributorRegisterPage: undefined;
     LoginPage: undefined;
     HomeScreen: undefined;
-    MainTabs: undefined;
+    BottomTabs: undefined;
     MenstrualCup: undefined;
     PeriodPanties: undefined;
     ReusablePads: undefined;
@@ -23,4 +23,6 @@ export type MainStackParamList = {
     CreateProductModal: undefined;
     AddProductModalProps: undefined;
     PlaceOrderScreen : undefined;
+    OffersScreen : undefined;
+    PharmacistScreen : undefined;
 }

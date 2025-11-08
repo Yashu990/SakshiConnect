@@ -2,7 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Linking } from 'react-native';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+
 const MenstrualCup = () => {
   const navigation = useNavigation();
   return (
@@ -21,56 +22,126 @@ const MenstrualCup = () => {
           Learn the correct way to use a menstrual cup with these simple steps.
         </Text>
 
-        {/* Steps */}
+        {/* How to Use */}
+        {/* How to Use */}
         <View style={styles.stepCard}>
           <View style={styles.stepTextContainer}>
             <Text style={styles.stepTitle}>How to Use</Text>
+
             <Text style={styles.stepDescription}>
-              🌸1. Menstrual Cup
-              🩸
-              A menstrual cup is a small, bell-shaped cup made of medical-grade silicone or rubber that
-              collects menstrual fluid rather than absorbing it.
-              {"\n"}
-              1. Wash your hands thoroughly with soap and water.
-              {"\n"}
-              2. Fold the cup — use the “C-fold” (press sides together to make a C shape) or
-              “punch-down fold.”
-              {"\n"}
-              3. Relax and insert the folded cup into the vagina — it should sit low in the vaginal
-              canal, not as deep as a tampon.
-              {"\n"}
-              4. Once inside, let it open fully to form a seal against the vaginal walls (you can gently
-              rotate it to ensure it’s open).
-              {"\n"}
-              5. You can wear it for 6–12 hours, depending on your flow.
-              {"\n"}
-              6. To remove, pinch the base of the cup to release the suction, then gently pull it out.
-              {"\n"}
-              7. Empty the contents into the toilet, rinse, and reinsert.
-              
+              <Text style={{ fontWeight: '600' }}>Menstrual Cup</Text>{"\n\n"}
+              A menstrual cup is a small, bell-shaped cup made of medical-grade silicone or rubber that collects menstrual fluid rather than absorbing it.
             </Text>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>1.</Text>
+              <Text style={styles.listText}>Wash your hands thoroughly with soap and water.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>2.</Text>
+              <Text style={styles.listText}>Fold the cup — use the “C-fold” (press sides together to make a C shape) or “punch-down fold.”</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>3.</Text>
+              <Text style={styles.listText}>Relax and insert the folded cup into the vagina — it should sit low in the vaginal canal, not as deep as a tampon.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>4.</Text>
+              <Text style={styles.listText}>Once inside, let it open fully to form a seal against the vaginal walls (you can gently rotate it to ensure it’s open).</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>5.</Text>
+              <Text style={styles.listText}>You can wear it for 6–12 hours, depending on your flow.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>6.</Text>
+              <Text style={styles.listText}>To remove, pinch the base of the cup to release the suction, then gently pull it out.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>7.</Text>
+              <Text style={styles.listText}>Empty the contents into the toilet, rinse, and reinsert.</Text>
+            </View>
           </View>
-          <Image source={require('../../images/cup.png')} style={styles.stepImage} />
         </View>
 
+
+        {/* How to Clean */}
         <View style={styles.stepCard}>
           <View style={styles.stepTextContainer}>
-            <Text style={styles.stepTitle}>Step 2</Text>
-            <Text style={styles.stepDescription}>
-              Fold the menstrual cup to prepare for insertion.
-            </Text>
+            <Text style={styles.stepTitle}>How to Clean</Text>
+
+            {/* During menstruation */}
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>• During menstruation:</Text>
+
+              <View style={styles.bulletRow}>
+                <Text style={styles.bullet}>•</Text>
+                <Text style={styles.listText}>
+                  Rinse the cup with cold or lukewarm water every time you empty it.
+                </Text>
+              </View>
+
+              <View style={styles.bulletRow}>
+                <Text style={styles.bullet}>•</Text>
+                <Text style={styles.listText}>
+                  If water isn’t available, wipe with clean tissue and reinsert — but wash properly later.
+                </Text>
+              </View>
+            </View>
+
+            {/* After your period */}
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>• After your period:</Text>
+
+              <View style={styles.bulletRow}>
+                <Text style={styles.bullet}>•</Text>
+                <Text style={styles.listText}>
+                  Boil the cup in water for 5–10 minutes to sterilize it.
+                </Text>
+              </View>
+
+              <View style={styles.bulletRow}>
+                <Text style={styles.bullet}>•</Text>
+                <Text style={styles.listText}>
+                  Use a dedicated pot (not one used for cooking).
+                </Text>
+              </View>
+
+              <View style={styles.bulletRow}>
+                <Text style={styles.bullet}>•</Text>
+                <Text style={styles.listText}>
+                  Let it cool and dry completely before storing.
+                </Text>
+              </View>
+            </View>
           </View>
-          <Image source={require('../../images/liner.png')} style={styles.stepImage} />
         </View>
 
+        {/* How to Store */}
         <View style={styles.stepCard}>
           <View style={styles.stepTextContainer}>
-            <Text style={styles.stepTitle}>Step 3</Text>
-            <Text style={styles.stepDescription}>
-              Insert the cup gently into the vaginal canal.
-            </Text>
+            <Text style={styles.stepTitle}>How to Store</Text>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>•</Text>
+              <Text style={styles.listText}>Keep it in a cotton or breathable pouch (not plastic or airtight).</Text>
+            </View>
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>•</Text>
+              <Text style={styles.listText}>Store in a cool, dry place away from sunlight.</Text>
+            </View>
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>•</Text>
+              <Text style={styles.listText}>Avoid storing it while it’s damp — moisture encourages bacteria growth.</Text>
+            </View>
           </View>
-          <Image source={require('../../images/reuse.png')} style={styles.stepImage} />
+          {/* <Image source={require('../../images/reuse.png')} style={styles.stepImage} /> */}
         </View>
 
         {/* Audio Section */}
@@ -143,37 +214,63 @@ const styles = StyleSheet.create({
   },
   description: {
     color: '#475569',
-    fontSize: 15,
+    fontSize: 12,
     marginBottom: 18,
-    lineHeight: 22,
+    lineHeight: 20,
   },
   stepCard: {
-    flexDirection: 'row',
     backgroundColor: '#fff',
     borderRadius: 16,
-    padding: 16,
-    marginBottom: 14,
-    alignItems: 'center',
-    elevation: 2,
+    padding: 18,
+    marginVertical: 10,
+    elevation: 3,
   },
   stepTextContainer: {
-    flex: 1,
-    marginRight: 10,
+    width: '100%',
   },
   stepTitle: {
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: '700',
     color: '#0284C7',
-    marginBottom: 4,
+    marginBottom: 8,
   },
   stepDescription: {
     fontSize: 15,
     color: '#0F172A',
+    lineHeight: 24,
+    textAlign: 'justify',
+  },
+  section: {
+    marginBottom: 10,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#0F172A',
+    marginBottom: 4,
+  },
+  bulletRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 4,
+    paddingLeft: 10,
+  },
+  bullet: {
+    fontSize: 16,
+    lineHeight: 22,
+    marginRight: 6,
+  },
+  listText: {
+    flex: 1,
+    fontSize: 15,
+    lineHeight: 22,
+    color: '#334155',
   },
   stepImage: {
     width: 60,
     height: 60,
     borderRadius: 12,
+    marginTop: 8,
   },
   audioCard: {
     backgroundColor: '#fff',

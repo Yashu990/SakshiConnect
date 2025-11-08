@@ -1,51 +1,110 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 
 const ReusablePads = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.container}>
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons name="arrow-back" size={22} color="#0F172A" />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>Menstrual Cup Usage</Text>
+          <Text style={styles.headerTitle}>Reusable Pads Usage</Text>
         </View>
 
         {/* Description */}
         <Text style={styles.description}>
-          Learn the correct way to use a menstrual cup with these simple steps.
+          Learn the correct way to use, clean, and store reusable menstrual pads.
         </Text>
 
-        {/* Steps */}
+        {/* Step 1: How to Use */}
         <View style={styles.stepCard}>
           <View style={styles.stepTextContainer}>
-            <Text style={styles.stepTitle}>Step 1</Text>
-            <Text style={styles.stepDescription}>Wash your hands with soap and water.</Text>
+            <Text style={styles.stepTitle}>How to Use</Text>
+
+            <Text style={styles.stepDescription}>
+              <Text style={{ fontWeight: '600' }}>Reusable pads</Text> are made of absorbent fabric layers that attach to your underwear with wings or snaps.{"\n\n"}
+            </Text>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>1.</Text>
+              <Text style={styles.listText}>Place the soft, absorbent side facing up on your underwear.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>2.</Text>
+              <Text style={styles.listText}>Wrap the wings around the underside of the underwear and snap or Velcro them together.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>3.</Text>
+              <Text style={styles.listText}>Change every 4–6 hours, or sooner if the pad feels wet or heavy.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>4.</Text>
+              <Text style={styles.listText}>Keep a wet bag if you’re outside — store used pads folded inside until you can wash them.</Text>
+            </View>
           </View>
-          <Image source={require('../../images/cup.png')} style={styles.stepImage} />
         </View>
 
+        {/* Step 2: How to Clean */}
         <View style={styles.stepCard}>
           <View style={styles.stepTextContainer}>
-            <Text style={styles.stepTitle}>Step 2</Text>
-            <Text style={styles.stepDescription}>
-              Fold the menstrual cup to prepare for insertion.
-            </Text>
+            <Text style={styles.stepTitle}>How to Clean</Text>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>1.</Text>
+              <Text style={styles.listText}>Rinse immediately in cold water to prevent stains from setting.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>2.</Text>
+              <Text style={styles.listText}>Soak in cold water for 30 minutes if needed (add salt or baking soda for odor control).</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>3.</Text>
+              <Text style={styles.listText}>Hand wash or machine wash using mild, fragrance-free soap.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>4.</Text>
+              <Text style={styles.listText}>Avoid hot water, bleach, or fabric softener — they damage fibers and reduce absorbency.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>5.</Text>
+              <Text style={styles.listText}>Sun-dry completely — sunlight naturally disinfects and removes odor.</Text>
+            </View>
           </View>
-          <Image source={require('../../images/liner.png')} style={styles.stepImage} />
         </View>
 
+        {/* Step 3: How to Store */}
         <View style={styles.stepCard}>
           <View style={styles.stepTextContainer}>
-            <Text style={styles.stepTitle}>Step 3</Text>
-            <Text style={styles.stepDescription}>
-              Insert the cup gently into the vaginal canal.
-            </Text>
+            <Text style={styles.stepTitle}>How to Store</Text>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>•</Text>
+              <Text style={styles.listText}>Store completely dry pads in a clean cloth pouch or drawer.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>•</Text>
+              <Text style={styles.listText}>Keep in a cool, dry place (avoid humid bathrooms).</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>•</Text>
+              <Text style={styles.listText}>Wash and sun-dry once every few weeks even when unused to keep them fresh.</Text>
+            </View>
           </View>
-          <Image source={require('../../images/reuse.png')} style={styles.stepImage} />
         </View>
 
         {/* Audio Section */}
@@ -69,11 +128,17 @@ const ReusablePads = () => {
           <Text style={styles.videoTitle}>Watch Video</Text>
           <View style={styles.videoBox}>
             <Image
-            //   source={require('../images/video-thumb.png')}
+              source={require('../../images/thum.png')}
               style={styles.videoImage}
             />
-            <Ionicons name="play-circle" size={48} color="#fff" style={styles.videoPlayIcon} />
+            <Ionicons
+              name="play-circle"
+              size={48}
+              color="#fff"
+              style={styles.videoPlayIcon}
+            />
           </View>
+
           <TouchableOpacity style={styles.youtubeButton}>
             <Text style={styles.youtubeText}>Open on YouTube</Text>
           </TouchableOpacity>
@@ -107,37 +172,49 @@ const styles = StyleSheet.create({
   },
   description: {
     color: '#475569',
-    fontSize: 15,
+    fontSize: 13,
     marginBottom: 18,
-    lineHeight: 22,
+    lineHeight: 20,
+    textAlign: 'justify',
   },
   stepCard: {
-    flexDirection: 'row',
     backgroundColor: '#fff',
     borderRadius: 16,
-    padding: 16,
-    marginBottom: 14,
-    alignItems: 'center',
-    elevation: 2,
+    padding: 18,
+    marginVertical: 10,
+    elevation: 3,
   },
   stepTextContainer: {
-    flex: 1,
-    marginRight: 10,
+    width: '100%',
   },
   stepTitle: {
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: '700',
     color: '#0284C7',
-    marginBottom: 4,
+    marginBottom: 8,
   },
   stepDescription: {
     fontSize: 15,
     color: '#0F172A',
+    lineHeight: 24,
+    textAlign: 'justify',
   },
-  stepImage: {
-    width: 60,
-    height: 60,
-    borderRadius: 12,
+  bulletRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 6,
+    paddingLeft: 10,
+  },
+  bullet: {
+    fontSize: 16,
+    lineHeight: 22,
+    marginRight: 6,
+  },
+  listText: {
+    flex: 1,
+    fontSize: 15,
+    lineHeight: 22,
+    color: '#334155',
   },
   audioCard: {
     backgroundColor: '#fff',

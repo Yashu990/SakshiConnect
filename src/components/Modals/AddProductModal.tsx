@@ -31,7 +31,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ visible, onClose }) =
     try {
       setLoading(true);
 
-      const response = await fetch('http://192.168.1.30:5000/api/products', {
+      const response = await fetch('http://192.168.1.21:5000/api/products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -36,7 +36,7 @@ const SetQuantityModal: React.FC<SetQuantityModalProps> = ({
 
     setLoading(true);
     try {
-      const response = await fetch('http://192.168.1.30:5000/api/distributor/inventory', {
+      const response = await fetch('http://192.168.1.21:5000/api/distributor/inventory', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

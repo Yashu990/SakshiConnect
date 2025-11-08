@@ -14,7 +14,7 @@ const AdminRegisterPage = () => {
 
   return (
     <ImageBackground
-      source={require('../images/backimg.png')}
+      // source={require('../images/logo.png')}
       style={styles.background}
     >
       {/* Overlay for better text visibility */}

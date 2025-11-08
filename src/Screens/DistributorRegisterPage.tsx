@@ -14,7 +14,7 @@ const DistributorRegisterPage = () => {
 
   return (
     <ImageBackground
-      source={require('../images/backimg.png')}
+      // source={require('../images/backimg.png')}
       style={styles.background}
     >
       {/* Dark overlay for better readability */}

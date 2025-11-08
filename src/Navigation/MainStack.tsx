@@ -23,7 +23,10 @@ import ManageOrder from '../Screens/Distibutor/ManageOrder';
 import AddProductScreen from '../Screens/Distibutor/AddProductScreen';
 
 import PlaceOrderScreen from '../Screens/SHG/PlaceOrderScreen ';
-import ShgScreen from '../Screens/SHG/ShgScreen';
+
+import HomeScreen from '../Screens/HomeScreen';
+import OffersScreen from '../Screens/OffersScreen';
+import PharmacistScreen from '../Screens/Pharmacist/PharmacistScreen';
 
 
 
@@ -39,7 +42,7 @@ const MainStack = () => {
       }}
     >
       <Stack.Screen name="LoginPage" component={LoginPage}/>
-      <Stack.Screen name="MainTabs" component={BottomTabs}/>
+      <Stack.Screen name="BottomTabs" component={BottomTabs}/>
       <Stack.Screen name="RoleSelectionPage" component={RoleSelectionPage} />
       <Stack.Screen name="UserRegisterPage" component={UserRegisterPage} />
       <Stack.Screen name="AdminRegisterPage" component={AdminRegisterPage} />
@@ -56,8 +59,10 @@ const MainStack = () => {
       <Stack.Screen name='CreateOrderPage'component={CreateOderPage}/>
       <Stack.Screen name='ManageOrder' component={ManageOrder}/>
       <Stack.Screen name='AddProductScreen' component={AddProductScreen}/>
-      <Stack.Screen name='ShgScreen' component={ShgScreen}/>
+      <Stack.Screen name='PharmacistScreen' component={PharmacistScreen}/>
       <Stack.Screen name='PlaceOrderScreen' component={PlaceOrderScreen}/>
+      <Stack.Screen name='HomeScreen' component={HomeScreen}/>
+      <Stack.Screen name='OffersScreen' component={OffersScreen}/>
     </Stack.Navigator>
   )
 }

@@ -14,8 +14,8 @@ const LearningScreen = () => {
   return (
     <View style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.heading}>{t('learningTitle')}</Text>
-        <Text style={styles.subHeading}>{t('learningSubtitle')}</Text>
+        <Text style={styles.heading}>{t('Learning')}</Text>
+        <Text style={styles.subHeading}>{t('Learn How To Use')}</Text>
 
         <View style={styles.grid}>
           {/* Card 1 */}
@@ -23,8 +23,8 @@ const LearningScreen = () => {
             <View style={styles.iconContainer}>
               <Image source={require('../images/cup.png')} style={styles.icon} />
             </View>
-            <Text style={styles.title}>{t('menstrualCup')}</Text>
-            <Text style={styles.details}>{t('learningDetails')}</Text>
+            <Text style={styles.title}>{t('Menstrual Cup')}</Text>
+            <Text style={styles.details}>{t('LearningDetails')}</Text>
           </TouchableOpacity>
 
           {/* Card 2 */}
@@ -32,8 +32,8 @@ const LearningScreen = () => {
             <View style={styles.iconContainer}>
               <Image source={require('../images/pad.png')} style={styles.icon} />
             </View>
-            <Text style={styles.title}>{t('reusablePads')}</Text>
-            <Text style={styles.details}>{t('learningDetails')}</Text>
+            <Text style={styles.title}>{t('Reusable Pads')}</Text>
+            <Text style={styles.details}>{t('Learning Details')}</Text>
           </TouchableOpacity>
 
           {/* Card 3 */}
@@ -41,8 +41,8 @@ const LearningScreen = () => {
             <View style={styles.iconContainer}>
               <Image source={require('../images/liner.png')} style={styles.icon} />
             </View>
-            <Text style={styles.title}>{t('periodPanties')}</Text>
-            <Text style={styles.details}>{t('learningDetails')}</Text>
+            <Text style={styles.title}>{t('Period Panties')}</Text>
+            <Text style={styles.details}>{t('Learning Details')}</Text>
           </TouchableOpacity>
 
           {/* Card 4 */}
@@ -50,8 +50,8 @@ const LearningScreen = () => {
             <View style={styles.iconContainer}>
               <Image source={require('../images/reuse.png')} style={styles.icon} />
             </View>
-            <Text style={styles.title}>{t('starterKit')}</Text>
-            <Text style={styles.details}>{t('learningDetails')}</Text>
+            <Text style={styles.title}>{t('Starter Kit')}</Text>
+            <Text style={styles.details}>{t('Learning Details')}</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

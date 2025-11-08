@@ -39,8 +39,9 @@ const ManageOrder = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://192.168.1.30:5000/api/distributor/1/inventory');
+      const response = await fetch('http://192.168.1.9:5000/api/distributor/2/inventory');
       const data = await response.json();
+      console.log('Fetched products:', data);
       setProducts(data);
       setLoading(false);
     } catch (err) {
@@ -60,7 +61,10 @@ const ManageOrder = () => {
       <View style={styles.headerRow}>
         <Text style={styles.header}>Inventory</Text>
 
-        <TouchableOpacity onPress={() => setIsModalVisible(true)}>
+        <TouchableOpacity onPress={() => {
+          setIsModalVisible(true);
+          navigation.navigate('CreateOrderPage');
+        }}>
           <Text style={{ color: '#2563EB', fontSize: 16, marginRight: 8 }}>
             Add Product
           </Text>

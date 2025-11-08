@@ -1,10 +1,11 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, Linking } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 
 const PeriodPanties = () => {
   const navigation = useNavigation();
+
   return (
     <View style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.container}>
@@ -13,86 +14,118 @@ const PeriodPanties = () => {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons name="arrow-back" size={22} color="#0F172A" />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>Menstrual Cup Usage</Text>
+          <Text style={styles.headerTitle}>Period Panties Usage</Text>
         </View>
 
         {/* Description */}
         <Text style={styles.description}>
-          Learn the correct way to use a menstrual cup with these simple steps.
+          Learn how to use, clean, and store period panties effectively.
         </Text>
 
-        {/* Steps */}
+        {/* Step 1: How to Use */}
         <View style={styles.stepCard}>
           <View style={styles.stepTextContainer}>
             <Text style={styles.stepTitle}>How to Use</Text>
             <Text style={styles.stepDescription}>
-              🌸1. Menstrual Cup
-              🩸
-              A menstrual cup is a small, bell-shaped cup made of medical-grade silicone or rubber that
-              collects menstrual fluid rather than absorbing it.
-              {"\n"}
-              1. Wash your hands thoroughly with soap and water.
-              {"\n"}
-              2. Fold the cup — use the “C-fold” (press sides together to make a C shape) or
-              “punch-down fold.”
-              {"\n"}
-              3. Relax and insert the folded cup into the vagina — it should sit low in the vaginal
-              canal, not as deep as a tampon.
-              {"\n"}
-              4. Once inside, let it open fully to form a seal against the vaginal walls (you can gently
-              rotate it to ensure it’s open).
-              {"\n"}
-              5. You can wear it for 6–12 hours, depending on your flow.
-              {"\n"}
-              6. To remove, pinch the base of the cup to release the suction, then gently pull it out.
-              {"\n"}
-              7. Empty the contents into the toilet, rinse, and reinsert.
-              
+              <Text style={{ fontWeight: '600' }}>Period panties</Text> look like normal underwear but have built-in absorbent and leak-proof layers.
             </Text>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>1.</Text>
+              <Text style={styles.listText}>Choose a size that fits snugly for leak protection.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>2.</Text>
+              <Text style={styles.listText}>Wear them directly — no extra pad or tampon is needed (unless your flow is very heavy).</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>3.</Text>
+              <Text style={styles.listText}>Depending on your flow, wear for 8–12 hours or change when feeling damp.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>4.</Text>
+              <Text style={styles.listText}>Keep spare panties in a pouch for changing if needed.</Text>
+            </View>
           </View>
-          <Image source={require('../../images/cup.png')} style={styles.stepImage} />
         </View>
 
+        {/* Step 2: How to Clean */}
         <View style={styles.stepCard}>
           <View style={styles.stepTextContainer}>
-            <Text style={styles.stepTitle}>Step 2</Text>
-            <Text style={styles.stepDescription}>
-              Fold the menstrual cup to prepare for insertion.
-            </Text>
+            <Text style={styles.stepTitle}>How to Clean</Text>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>1.</Text>
+              <Text style={styles.listText}>Rinse in cold water immediately after wearing until the water runs clear.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>2.</Text>
+              <Text style={styles.listText}>Hand wash or machine wash on gentle cycle using mild detergent.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>3.</Text>
+              <Text style={styles.listText}>Avoid bleach, hot water, or fabric softener — they damage the waterproof layer.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>4.</Text>
+              <Text style={styles.listText}>Air dry in shade — avoid sunlight or dryers as heat weakens the elastic and waterproof fabric.</Text>
+            </View>
           </View>
-          <Image source={require('../../images/liner.png')} style={styles.stepImage} />
         </View>
 
+        {/* Step 3: How to Store */}
         <View style={styles.stepCard}>
           <View style={styles.stepTextContainer}>
-            <Text style={styles.stepTitle}>Step 3</Text>
-            <Text style={styles.stepDescription}>
-              Insert the cup gently into the vaginal canal.
-            </Text>
+            <Text style={styles.stepTitle}>How to Store</Text>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>•</Text>
+              <Text style={styles.listText}>Fold and store completely dry in a clean drawer or breathable bag.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>•</Text>
+              <Text style={styles.listText}>Never store damp panties; moisture causes odor and bacterial growth.</Text>
+            </View>
           </View>
-          <Image source={require('../../images/reuse.png')} style={styles.stepImage} />
         </View>
 
-        {/* Audio Section */}
-        <View style={styles.audioCard}>
-          <Text style={styles.audioTitle}>Listen (offline)</Text>
-          <TouchableOpacity style={styles.playButton}>
-            <Ionicons name="play" size={28} color="#fff" />
-          </TouchableOpacity>
-          <View style={styles.audioProgress}>
-            <View style={styles.audioBar} />
+        {/* Step 4: General Hygiene Tips */}
+        <View style={styles.stepCard}>
+          <View style={styles.stepTextContainer}>
+            <Text style={styles.stepTitle}>General Hygiene Tips (for All Products)</Text>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>•</Text>
+              <Text style={styles.listText}>Always wash your hands before and after handling menstrual products.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>•</Text>
+              <Text style={styles.listText}>Replace reusable items every 2–5 years, depending on use and condition.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>•</Text>
+              <Text style={styles.listText}>Inspect regularly for tears, discoloration, or odor — replace if noticed.</Text>
+            </View>
+
+            <View style={styles.bulletRow}>
+              <Text style={styles.bullet}>•</Text>
+              <Text style={styles.listText}>If irritation or infection occurs, stop using and consult a gynecologist.</Text>
+            </View>
           </View>
-          <View style={styles.audioTime}>
-            <Text style={styles.timeText}>1:05</Text>
-            <Text style={styles.timeText}>4:20</Text>
-          </View>
-          <Text style={styles.offlineText}>Audio works offline</Text>
         </View>
 
         {/* Video Section */}
         <View style={styles.videoCard}>
           <Text style={styles.videoTitle}>Watch Video</Text>
-
           <View style={styles.videoBox}>
             <Image
               source={require('../../images/thum.png')}
@@ -106,13 +139,9 @@ const PeriodPanties = () => {
             />
           </View>
 
-          <TouchableOpacity
-            style={styles.youtubeButton}
-            onPress={() => Linking.openURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ')}
-          >
+          <TouchableOpacity style={styles.youtubeButton}>
             <Text style={styles.youtubeText}>Open on YouTube</Text>
           </TouchableOpacity>
-
           <Text style={styles.requireText}>Requires internet</Text>
         </View>
       </ScrollView>
@@ -143,88 +172,49 @@ const styles = StyleSheet.create({
   },
   description: {
     color: '#475569',
-    fontSize: 15,
+    fontSize: 13,
     marginBottom: 18,
-    lineHeight: 22,
+    lineHeight: 20,
+    textAlign: 'justify',
   },
   stepCard: {
-    flexDirection: 'row',
     backgroundColor: '#fff',
     borderRadius: 16,
-    padding: 16,
-    marginBottom: 14,
-    alignItems: 'center',
-    elevation: 2,
+    padding: 18,
+    marginVertical: 10,
+    elevation: 3,
   },
   stepTextContainer: {
-    flex: 1,
-    marginRight: 10,
+    width: '100%',
   },
   stepTitle: {
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: '700',
     color: '#0284C7',
-    marginBottom: 4,
+    marginBottom: 8,
   },
   stepDescription: {
     fontSize: 15,
     color: '#0F172A',
+    lineHeight: 24,
+    textAlign: 'justify',
   },
-  stepImage: {
-    width: 60,
-    height: 60,
-    borderRadius: 12,
-  },
-  audioCard: {
-    backgroundColor: '#fff',
-    borderRadius: 16,
-    padding: 20,
-    marginTop: 10,
-    marginBottom: 16,
-    alignItems: 'center',
-    elevation: 2,
-  },
-  audioTitle: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#0F172A',
-    marginBottom: 10,
-  },
-  playButton: {
-    backgroundColor: '#06B6D4',
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: 10,
-  },
-  audioProgress: {
-    height: 4,
-    width: '100%',
-    backgroundColor: '#E2E8F0',
-    borderRadius: 2,
-    marginVertical: 10,
-  },
-  audioBar: {
-    width: '30%',
-    height: 4,
-    backgroundColor: '#06B6D4',
-    borderRadius: 2,
-  },
-  audioTime: {
+  bulletRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
+    alignItems: 'flex-start',
+    marginBottom: 6,
+    paddingLeft: 10,
   },
-  timeText: {
-    fontSize: 12,
-    color: '#475569',
+  bullet: {
+    fontSize: 16,
+    lineHeight: 22,
+    marginRight: 6,
   },
-  offlineText: {
-    fontSize: 12,
-    color: '#94A3B8',
-    marginTop: 6,
+  listText: {
+    flex: 1,
+    fontSize: 15,
+    lineHeight: 22,
+    color: '#334155',
   },
   videoCard: {
     backgroundColor: '#fff',

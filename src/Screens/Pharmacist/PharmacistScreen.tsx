@@ -13,40 +13,40 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { MainStackParamList } from '../Navigation/types';
+import { MainStackParamList } from '../../Navigation/types';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 type NavigationProp = NativeStackNavigationProp<MainStackParamList>;
 
-const HomeScreen = ({ route }: any) => {
+const PharmacistScreen = ({ route }: any) => {
   const navigation = useNavigation<NavigationProp>();
   const [showAlert, setShowAlert] = useState(false);
   const currentRoute = route?.name || 'Home';
 
   const highlights = [
-    { id: 1, title: 'Menstrual Cup', image: require('../images/cup.png') },
-    { id: 2, title: 'Cloth Pads', image: require('../images/reuse.png') },
-    { id: 3, title: 'Panty Liners', image: require('../images/pad.png') },
-    { id: 4, title: 'Period Underwear', image: require('../images/liner.png') },
+    { id: 1, title: 'Menstrual Cup', image: require('../../images/cup.png') },
+    { id: 2, title: 'Cloth Pads', image: require('../../images/reuse.png') },
+    { id: 3, title: 'Panty Liners', image: require('../../images/pad.png') },
+    { id: 4, title: 'Period Underwear', image: require('../../images/liner.png') },
   ];
 
   const awareness = [
-    { id: 1, title: 'Safe & Sustainable Menstrual Health', image: require('../images/help group.png') },
-    { id: 2, title: 'Reusable Awareness', image: require('../images/help group.png') },
+    { id: 1, title: 'Safe & Sustainable Menstrual Health', image: require('../../images/help group.png') },
+    { id: 2, title: 'Reusable Awareness', image: require('../../images/help group.png') },
   ];
 
   const bestPrice = [
-    { id: 1, title: 'Menstrual Cup', image: require('../images/cup.png'), price: 150 },
-    { id: 2, title: 'Cloth Pad', image: require('../images/pad.png'), price: 180 },
+    { id: 1, title: 'Menstrual Cup', image: require('../../images/cup.png'), price: 150 },
+    { id: 2, title: 'Cloth Pad', image: require('../../images/pad.png'), price: 180 },
   ];
 
   const viewed = [
-    { id: 1, title: 'Disc', image: require('../images/pad.png') },
-    { id: 2, title: 'Underwear', image: require('../images/liner.png') },
-    { id: 3, title: 'Cloth Pad', image: require('../images/pad.png') },
-    { id: 4, title: 'Cup', image: require('../images/cup.png') },
-    { id: 5, title: 'Panty Liner', image: require('../images/liner.png') },
+    { id: 1, title: 'Disc', image: require('../../images/pad.png') },
+    { id: 2, title: 'Underwear', image: require('../../images/liner.png') },
+    { id: 3, title: 'Cloth Pad', image: require('../../images/pad.png') },
+    { id: 4, title: 'Cup', image: require('../../images/cup.png') },
+    { id: 5, title: 'Panty Liner', image: require('../../images/liner.png') },
   ];
 
   return (
@@ -122,7 +122,7 @@ const HomeScreen = ({ route }: any) => {
           {[1, 2, 3].map((_, index) => (
             <TouchableOpacity key={index}>
               <View style={styles.learnCard}>
-                <Image source={require('../images/help group.png')} style={styles.learnImage} />
+                <Image source={require('../../images/help group.png')} style={styles.learnImage} />
                 <Text style={styles.learnText}>
                   {index === 0
                     ? 'Discover and explore reusable products.'
@@ -205,7 +205,7 @@ const HomeScreen = ({ route }: any) => {
   );
 };
 
-export default HomeScreen;
+export default PharmacistScreen;
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#f9f9f901',  },
