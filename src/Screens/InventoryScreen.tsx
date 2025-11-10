@@ -36,12 +36,12 @@ const InventoryScreen = () => {
         </View>
 
         {/* Offline Alert */}
-        <View style={styles.alertBox}>
+        {/* <View style={styles.alertBox}>
           <Ionicons name="warning-outline" size={20} color="#ff9800" style={{ marginRight: 6 }} />
           <Text style={styles.alertText}>
             You are currently offline. Changes will sync later.
           </Text>
-        </View>
+        </View> */}
 
         {/* Cards */}
         <View style={styles.cardContainer}>

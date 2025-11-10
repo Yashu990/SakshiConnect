@@ -21,7 +21,7 @@ const LearningScreen = () => {
           {/* Card 1 */}
           <TouchableOpacity onPress={() => navigation.navigate('MenstrualCup')} style={styles.card}>
             <View style={styles.iconContainer}>
-              <Image source={require('../images/cup.png')} style={styles.icon} />
+              <Image source={require('../images/MenstrualCup.png')} style={styles.icon} />
             </View>
             <Text style={styles.title}>{t('Menstrual Cup')}</Text>
             <Text style={styles.details}>{t('LearningDetails')}</Text>
@@ -30,7 +30,7 @@ const LearningScreen = () => {
           {/* Card 2 */}
           <TouchableOpacity onPress={() => navigation.navigate('ReusablePads')} style={styles.card}>
             <View style={styles.iconContainer}>
-              <Image source={require('../images/pad.png')} style={styles.icon} />
+              <Image source={require('../images/ReusablePad.png')} style={styles.icon} />
             </View>
             <Text style={styles.title}>{t('Reusable Pads')}</Text>
             <Text style={styles.details}>{t('Learning Details')}</Text>
@@ -39,7 +39,7 @@ const LearningScreen = () => {
           {/* Card 3 */}
           <TouchableOpacity onPress={() => navigation.navigate('PeriodPanties')} style={styles.card}>
             <View style={styles.iconContainer}>
-              <Image source={require('../images/liner.png')} style={styles.icon} />
+              <Image source={require('../images/reuse.png')} style={styles.icon} />
             </View>
             <Text style={styles.title}>{t('Period Panties')}</Text>
             <Text style={styles.details}>{t('Learning Details')}</Text>
@@ -48,7 +48,7 @@ const LearningScreen = () => {
           {/* Card 4 */}
           <TouchableOpacity onPress={() => navigation.navigate('StarterKit')} style={styles.card}>
             <View style={styles.iconContainer}>
-              <Image source={require('../images/reuse.png')} style={styles.icon} />
+              <Image source={require('../images/Straterkit.png')} style={styles.icon} />
             </View>
             <Text style={styles.title}>{t('Starter Kit')}</Text>
             <Text style={styles.details}>{t('Learning Details')}</Text>
@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   icon: {
-    width: 28,
-    height: 28,
+    width: 48,
+    height: 48,
     resizeMode: 'contain',
   },
   title: {

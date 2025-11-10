@@ -38,22 +38,22 @@ const ShopScreen = () => {
         {/* Product Grid (Manual - no map) */}
         <View style={styles.grid}>
           <TouchableOpacity onPress={()=>navigation.navigate('OffersScreen')} style={styles.card}>
-            <Image source={require('../images/cup.png')} style={styles.image} />
+            <Image source={require('../images/MenstrualCup.png')} style={styles.image} />
             <Text style={styles.productName}>Menstrual Cup</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.card}>
-            <Image source={require('../images/reuse.png')} style={styles.image} />
+            <Image source={require('../images/ReusablePad.png')} style={styles.image} />
             <Text style={styles.productName}>Reusable Pads</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.card}>
-            <Image source={require('../images/liner.png')} style={styles.image} />
+            <Image source={require('../images/reuse.png')} style={styles.image} />
             <Text style={styles.productName}>Period Panties</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.card}>
-            <Image source={require('../images/pad.png')} style={styles.image} />
+            <Image source={require('../images/Straterkit.png')} style={styles.image} />
             <Text style={styles.productName}>Starter Kit</Text>
           </TouchableOpacity>
         </View>

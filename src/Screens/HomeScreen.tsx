@@ -25,10 +25,10 @@ const HomeScreen = ({ route }: any) => {
   const currentRoute = route?.name || 'Home';
 
   const highlights = [
-    { id: 1, title: 'Menstrual Cup', image: require('../images/cup.png') },
-    { id: 2, title: 'Cloth Pads', image: require('../images/reuse.png') },
-    { id: 3, title: 'Panty Liners', image: require('../images/pad.png') },
-    { id: 4, title: 'Period Underwear', image: require('../images/liner.png') },
+    { id: 1, title: 'Menstrual Cup', image: require('../images/MenstrualCup.png') },
+    { id: 2, title: 'Cloth Pads', image: require('../images/liner.png') },
+    { id: 3, title: 'Panty Liners', image: require('../images/reuse.png') },
+    { id: 4, title: 'Period Underwear', image: require('../images/Straterkit.png') },
   ];
 
   const awareness = [
@@ -37,24 +37,22 @@ const HomeScreen = ({ route }: any) => {
   ];
 
   const bestPrice = [
-    { id: 1, title: 'Menstrual Cup', image: require('../images/cup.png'), price: 150 },
-    { id: 2, title: 'Cloth Pad', image: require('../images/pad.png'), price: 180 },
+    { id: 1, title: 'Menstrual Cup', image: require('../images/MenstrualCup.png'), price: 150 },
+    { id: 2, title: 'Cloth Pad', image: require('../images/ReusablePad.png'), price: 180 },
   ];
 
   const viewed = [
-    { id: 1, title: 'Disc', image: require('../images/pad.png') },
-    { id: 2, title: 'Underwear', image: require('../images/liner.png') },
-    { id: 3, title: 'Cloth Pad', image: require('../images/pad.png') },
-    { id: 4, title: 'Cup', image: require('../images/cup.png') },
-    { id: 5, title: 'Panty Liner', image: require('../images/liner.png') },
+    // { id: 1, title: 'Cup', image: require('../images/cup.png') },
+    { id: 2, title: 'Underwear', image: require('../images/reuse.png') },
+    { id: 3, title: 'Cloth Pad', image: require('../images/ReusablePad.png') },
+    { id: 4, title: 'Cup', image: require('../images/MenstrualCup.png') },
+    { id: 5, title: 'Panty Liner', image: require('../images/Straterkit.png') },
   ];
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#f9f9f9" barStyle="dark-content" />
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        {/* HEADER */}
-        <View style={styles.header}>
+       <View style={styles.profile}>
           <TouchableOpacity>
             <View style={styles.profileSection}>
               <Image
@@ -71,6 +69,28 @@ const HomeScreen = ({ route }: any) => {
             <Ionicons name="notifications-outline" size={26} color="#333" />
           </TouchableOpacity>
         </View>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+       
+        
+        {/* HEADER */}
+        {/* <View style={styles.header}>
+          <TouchableOpacity>
+            <View style={styles.profileSection}>
+              <Image
+                source={{ uri: 'https://i.pravatar.cc/100' }}
+                style={styles.profileImage}
+              />
+              <View>
+                <Text style={styles.welcomeText}>Welcome, Anjali</Text>
+                <Text style={styles.subText}>Pharmacist Leader</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setShowAlert(true)} style={styles.iconButton}>
+            <Ionicons name="notifications-outline" size={26} color="#333" />
+          </TouchableOpacity>
+        </View> */}
+      
 
         {/* PRODUCT HIGHLIGHTS */}
         <Text style={styles.sectionTitle}>Products' Highlights</Text>
@@ -80,7 +100,7 @@ const HomeScreen = ({ route }: any) => {
               <Image source={item.image} style={styles.highlightImage} />
               <Text style={[
                 styles.highlightTitle,
-                { color: index === 0 ? '#1d4ed8' : index === 1 ? '#15803d' : '#7e22ce' },
+                { color: index === 0 ? '#black' : index === 1 ? '#black' : '#black' },
               ]}>
                 {item.title}
               </Text>
@@ -89,7 +109,7 @@ const HomeScreen = ({ route }: any) => {
               </Text>
               <Text style={[
                 styles.highlightPrice,
-                { color: index === 0 ? '#1d4ed8' : index === 1 ? '#15803d' : '#7e22ce' },
+                { color: index === 0 ? '#15803d' : index === 1 ? '#15803d' : '#15803d' },
               ]}>
                 {index === 0 ? '₹250/pack' : index === 1 ? '₹300 each' : '₹180/pack'}
               </Text>
@@ -208,18 +228,18 @@ const HomeScreen = ({ route }: any) => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f9f9f901',  },
-  scrollContent: { padding: 12, paddingBottom: 120 },
+  container: { flex: 1, backgroundColor: '#f9f9f901', marginTop:-25 },
+  scrollContent: { padding: 10,},
 
   header: {
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-    marginBottom: 12, backgroundColor: '#fff', borderBottomWidth: 1, borderBottomColor: '#ccc',
-    paddingVertical: 10, paddingHorizontal: 12, width: '100%',
+    marginBottom: 12, backgroundColor: '#fff',  
+    paddingVertical: 10, paddingHorizontal: 5, 
   },
-  profileSection: { flexDirection: 'row', alignItems: 'center' },
+  profileSection: { flexDirection: 'row', alignItems: 'center',  },
   profileImage: { width: 44, height: 44, borderRadius: 22, marginRight: 10, borderWidth: 1, borderColor: '#ddd' },
   welcomeText: { fontSize: 18, fontWeight: '700', color: '#c0342e' },
-  subText: { color: '#666' },
+  subText: { color: '#161212ff' },
   iconButton: { padding: 8 },
 
   sectionTitle: { fontSize: 18, fontWeight: '700', marginBottom: 8 },
@@ -229,17 +249,26 @@ const styles = StyleSheet.create({
     width: 160, marginRight: 12, backgroundColor: '#fff', borderRadius: 16,
     padding: 10, borderWidth: 0.8, borderColor: '#eee', elevation: 1,
   },
-  highlightImage: { width: '100%', height: 90, borderRadius: 12, marginBottom: 8, resizeMode: 'contain' },
+  profile:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    backgroundColor:'#fff',
+    width:430,
+    paddingHorizontal:10,
+    paddingVertical:10,
+    marginTop:30
+  },
+  highlightImage: { width: 140, height: 95, borderRadius: 12, marginBottom: 8, resizeMode: 'contain' },
   highlightTitle: { fontSize: 15, fontWeight: '700', marginBottom: 2 },
   highlightDesc: { color: '#666', fontSize: 12, marginBottom: 4 },
   highlightPrice: { fontWeight: '700', fontSize: 13 },
 
-  awarenessCard: { width: 385, height: 270, marginRight: 12, backgroundColor: '#fff', borderRadius: 12, overflow: 'hidden', elevation: 4 },
-  awarenessImage: { width: '100%', height: 140 },
+  awarenessCard: { width: 400, height: 295, marginRight: 12, backgroundColor: '#fff', borderRadius: 12, overflow: 'hidden', elevation: 4 },
+  awarenessImage: { width: '100%', height: 170 },
   awarenessTextBox: { padding: 12 },
   awarenessTitle: { fontSize: 16, fontWeight: '700', marginBottom: 6 },
   awarenessDesc: { color: '#555', marginBottom: 10 },
-  learnMoreBtn: { backgroundColor: '#ff8c00', paddingVertical: 8, paddingHorizontal: 14, borderRadius: 8 },
+  learnMoreBtn: { backgroundColor: '#15803d', paddingVertical: 8, paddingHorizontal: 14, borderRadius: 8, width:110 },
   learnMoreText: { color: '#fff', fontWeight: '700' },
 
   learnContainer: { padding: 16, backgroundColor: '#f2f2f2' },
@@ -248,23 +277,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12,
     marginBottom: 16, height: 50,
   },
-  learnImage: { width: '40%', height: 50, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, marginRight: 12 },
+  learnImage: { width: '20%', height: 52, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, marginRight: 12 },
   learnText: { flex: 1, fontSize: 16, fontWeight: '600' },
 
   bestPriceCard: {
     width: 250, height: 90, marginRight: 12, backgroundColor: '#fff', borderRadius: 12,
     flexDirection: 'row', alignItems: 'center', padding: 10, elevation: 3,
   },
+  
   bestPriceImage: { width: 60, height: 60, borderRadius: 10, marginRight: 10 },
   bestPriceTextBox: { flex: 1 },
   bestPriceTitle: { fontWeight: '700', fontSize: 14 },
-  bestPricePrice: { color: '#22c55ef6', fontWeight: '700', fontSize: 17 },
-  strikePrice: { color: '#36343475', textDecorationLine: 'line-through', fontSize: 15 },
+  bestPricePrice: { color: '#15803d', fontWeight: '700', fontSize: 17 },
+  strikePrice: { color: '#13111175', textDecorationLine: 'line-through', fontSize: 15 },
   bestPriceVendor: { color: '#555', fontSize: 12, fontWeight: '700' },
 
-  viewedCard: { width: 110, marginRight: 14, alignItems: 'center' },
-  viewedImageBox: { width: 98, height: 98, borderRadius: 12, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center', elevation: 2 },
-  viewedImage: { width: 72, height: 72, resizeMode: 'contain' },
+  viewedCard: { width: 90, marginRight: 36, alignItems: 'center' },
+  viewedImageBox: { width: 90, height: 98, borderRadius: 12, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center', elevation: 2 },
+  viewedImage: { width: 110, height: 98, resizeMode: 'cover' },
   viewedText: { marginTop: 8 },
 
   modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.45)', justifyContent: 'center', alignItems: 'center' },

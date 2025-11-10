@@ -10,8 +10,10 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useOrders } from '../context/OrderContext';
 import { useInventory } from '../context/InventoryContext';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 const OffersScreen: React.FC = () => {
+  const navigation = useNavigation();
   const { addOrder, makeCall } = useOrders();
   const { getAvailableProducts } = useInventory();
 
@@ -64,113 +66,122 @@ const OffersScreen: React.FC = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      {/* Offline Banner */}
-      <View style={styles.offlineBanner}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F9FAFB' }}>
+      <ScrollView style={styles.container}>
+        {/* Offline Banner */}
+        {/* <View style={styles.offlineBanner}>
         <Ionicons name="warning-outline" size={20} color="#A16207" />
         <Text style={styles.offlineText}>
           You're offline. Calls/WhatsApp will be saved and shared when online.
         </Text>
-      </View>
+      </View> */}
 
-      {/* Header */}
-      <View style={styles.headerCard}>
-        <Text style={styles.headerTitle}>Available Products</Text>
-        <Text style={styles.headerSubtitle}>
-          Call/WhatsApp to order. Distributor will enter it; see status in Orders.
-        </Text>
-      </View>
+        {/* Header */}
 
-      {availableProducts.length === 0 ? (
-        <View style={styles.emptyState}>
-          <Ionicons name="cube-outline" size={60} color="#CCC" />
-          <Text style={styles.emptyText}>No products available</Text>
-          <Text style={styles.emptySubtext}>
-            Products will appear here when distributors add them
+        <View style={styles.headerCard}>
+          <View style={styles.headerRow}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Ionicons name="arrow-back" size={22} color="#0F172A" />
+            </TouchableOpacity>
+            <Text style={styles.headerTitle}>Available Products</Text>
+          </View>
+          <Text style={styles.headerSubtitle}>
+            Call/WhatsApp to order. Distributor will enter it; see status in Orders.
           </Text>
         </View>
-      ) : (
-        availableProducts.map((product) => (
-          <View key={product.id} style={styles.card}>
-            <View style={styles.cardHeader}>
-              <View>
-                <Text style={styles.productName}>{product.product_name}</Text>
-                {product.description && (
-                  <Text style={styles.productDescription}>{product.description}</Text>
-                )}
-              </View>
-              <View style={styles.stockBadge}>
-                <View style={styles.stockDot} />
-                <Text style={styles.stockText}>{product.quantity} in stock</Text>
-              </View>
-            </View>
 
-            <Text style={styles.distributorName}>{product.distributor_name}</Text>
 
-            <View style={styles.detailsRow}>
-              <View style={styles.detailItem}>
-                <Ionicons name="cash-outline" size={16} color="#6B7280" />
-                <Text style={styles.detailText}>₹{product.unit_price}/pack</Text>
-              </View>
-              <View style={styles.detailItem}>
-                <Ionicons name="cube-outline" size={16} color="#6B7280" />
-                <Text style={styles.detailText}>MOQ: {product.moq} packs</Text>
-              </View>
-            </View>
-
-            <View style={styles.detailsRow}>
-              <View style={styles.detailItem}>
-                <Ionicons name="time-outline" size={16} color="#6B7280" />
-                <Text style={styles.detailText}>Lead: {product.lead_time}</Text>
-              </View>
-              {product.service_areas.length > 0 && (
-                <View style={styles.detailItem}>
-                  <Ionicons name="location-outline" size={16} color="#6B7280" />
-                  <Text style={styles.detailText} numberOfLines={1}>
-                    {product.service_areas.slice(0, 2).join(', ')}
-                  </Text>
-                </View>
-              )}
-            </View>
-
-            {product.payment_modes.length > 0 && (
-              <View style={styles.paymentBadges}>
-                {product.payment_modes.map((mode, idx) => (
-                  <View key={idx} style={styles.paymentBadge}>
-                    <Text style={styles.paymentBadgeText}>{mode}</Text>
-                  </View>
-                ))}
-              </View>
-            )}
-
-            {product.seller_note && (
-              <View style={styles.noteCard}>
-                <Ionicons name="information-circle-outline" size={16} color="#2563EB" />
-                <Text style={styles.noteText}>{product.seller_note}</Text>
-              </View>
-            )}
-
-            <TouchableOpacity
-              style={styles.callButton}
-              onPress={() => handleCall(product)}>
-              <Ionicons name="call-outline" size={18} color="#fff" />
-              <Text style={styles.buttonText}>Call distributor</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.whatsappButton}
-              onPress={() => handleWhatsApp(product)}>
-              <Ionicons name="logo-whatsapp" size={18} color="#0F766E" />
-              <Text style={styles.whatsappText}>WhatsApp distributor</Text>
-            </TouchableOpacity>
-
-            <Text style={styles.note}>
-              We'll note your request for the distributor.
+        {availableProducts.length === 0 ? (
+          <View style={styles.emptyState}>
+            <Ionicons name="cube-outline" size={60} color="#CCC" />
+            <Text style={styles.emptyText}>No products available</Text>
+            <Text style={styles.emptySubtext}>
+              Products will appear here when distributors add them
             </Text>
           </View>
-        ))
-      )}
-    </ScrollView>
+        ) : (
+          availableProducts.map((product) => (
+            <View key={product.id} style={styles.card}>
+              <View style={styles.cardHeader}>
+                <View>
+                  <Text style={styles.productName}>{product.product_name}</Text>
+                  {product.description && (
+                    <Text style={styles.productDescription}>{product.description}</Text>
+                  )}
+                </View>
+                <View style={styles.stockBadge}>
+                  <View style={styles.stockDot} />
+                  <Text style={styles.stockText}>{product.quantity} in stock</Text>
+                </View>
+              </View>
+
+              <Text style={styles.distributorName}>{product.distributor_name}</Text>
+
+              <View style={styles.detailsRow}>
+                <View style={styles.detailItem}>
+                  <Ionicons name="cash-outline" size={16} color="#6B7280" />
+                  <Text style={styles.detailText}>₹{product.unit_price}/pack</Text>
+                </View>
+                <View style={styles.detailItem}>
+                  <Ionicons name="cube-outline" size={16} color="#6B7280" />
+                  <Text style={styles.detailText}>MOQ: {product.moq} packs</Text>
+                </View>
+              </View>
+
+              <View style={styles.detailsRow}>
+                <View style={styles.detailItem}>
+                  <Ionicons name="time-outline" size={16} color="#6B7280" />
+                  <Text style={styles.detailText}>Lead: {product.lead_time}</Text>
+                </View>
+                {product.service_areas.length > 0 && (
+                  <View style={styles.detailItem}>
+                    <Ionicons name="location-outline" size={16} color="#6B7280" />
+                    <Text style={styles.detailText} numberOfLines={1}>
+                      {product.service_areas.slice(0, 2).join(', ')}
+                    </Text>
+                  </View>
+                )}
+              </View>
+
+              {product.payment_modes.length > 0 && (
+                <View style={styles.paymentBadges}>
+                  {product.payment_modes.map((mode, idx) => (
+                    <View key={idx} style={styles.paymentBadge}>
+                      <Text style={styles.paymentBadgeText}>{mode}</Text>
+                    </View>
+                  ))}
+                </View>
+              )}
+
+              {product.seller_note && (
+                <View style={styles.noteCard}>
+                  <Ionicons name="information-circle-outline" size={16} color="#2563EB" />
+                  <Text style={styles.noteText}>{product.seller_note}</Text>
+                </View>
+              )}
+
+              <TouchableOpacity
+                style={styles.callButton}
+                onPress={() => handleCall(product)}>
+                <Ionicons name="call-outline" size={18} color="#fff" />
+                <Text style={styles.buttonText}>Call distributor</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.whatsappButton}
+                onPress={() => handleWhatsApp(product)}>
+                <Ionicons name="logo-whatsapp" size={18} color="#0F766E" />
+                <Text style={styles.whatsappText}>WhatsApp distributor</Text>
+              </TouchableOpacity>
+
+              <Text style={styles.note}>
+                We'll note your request for the distributor.
+              </Text>
+            </View>
+          ))
+        )}
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -203,6 +214,12 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     elevation: 1,
   },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    marginBottom: 6,
+  },
   headerTitle: {
     fontSize: 18,
     fontWeight: '700',
@@ -211,8 +228,9 @@ const styles = StyleSheet.create({
   headerSubtitle: {
     fontSize: 14,
     color: '#4B5563',
-    marginTop: 6,
+    lineHeight: 20,
   },
+
   emptyState: {
     alignItems: 'center',
     justifyContent: 'center',

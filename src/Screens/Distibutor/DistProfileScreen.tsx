@@ -48,12 +48,12 @@ export default function DistProfileScreen() {
 
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         {/* Offline Banner */}
-        {!isOnline && (
+        {/* {!isOnline && (
           <View style={styles.offlineBanner}>
             <Text style={styles.offlineIcon}>⚡</Text>
             <Text style={styles.offlineText}>Offline. Changes will sync later.</Text>
           </View>
-        )}
+        )} */}
 
         <View style={styles.content}>
           {/* Distributor Info Card */}

@@ -141,7 +141,7 @@ const MenstrualCup = () => {
               <Text style={styles.listText}>Avoid storing it while it’s damp — moisture encourages bacteria growth.</Text>
             </View>
           </View>
-          {/* <Image source={require('../../images/reuse.png')} style={styles.stepImage} /> */}
+          <Image source={require('../../images/MenstrualCup.png')} style={styles.stepImage} />
         </View>
 
         {/* Audio Section */}

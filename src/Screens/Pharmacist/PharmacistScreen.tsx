@@ -27,7 +27,7 @@ const PharmacistScreen = ({ route }: any) => {
   const highlights = [
     { id: 1, title: 'Menstrual Cup', image: require('../../images/cup.png') },
     { id: 2, title: 'Cloth Pads', image: require('../../images/reuse.png') },
-    { id: 3, title: 'Panty Liners', image: require('../../images/pad.png') },
+    { id: 3, title: 'Panty Liners', image: require('../../images/liner.png') },
     { id: 4, title: 'Period Underwear', image: require('../../images/liner.png') },
   ];
 
@@ -38,13 +38,13 @@ const PharmacistScreen = ({ route }: any) => {
 
   const bestPrice = [
     { id: 1, title: 'Menstrual Cup', image: require('../../images/cup.png'), price: 150 },
-    { id: 2, title: 'Cloth Pad', image: require('../../images/pad.png'), price: 180 },
+    { id: 2, title: 'Cloth Pad', image: require('../../images/liner.png'), price: 180 },
   ];
 
   const viewed = [
-    { id: 1, title: 'Disc', image: require('../../images/pad.png') },
+    { id: 1, title: 'Disc', image: require('../../images/liner.png') },
     { id: 2, title: 'Underwear', image: require('../../images/liner.png') },
-    { id: 3, title: 'Cloth Pad', image: require('../../images/pad.png') },
+    { id: 3, title: 'Cloth Pad', image: require('../../images/liner.png') },
     { id: 4, title: 'Cup', image: require('../../images/cup.png') },
     { id: 5, title: 'Panty Liner', image: require('../../images/liner.png') },
   ];

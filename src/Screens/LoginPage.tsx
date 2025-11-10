@@ -82,7 +82,7 @@ const LoginPage = () => {
           <View style={styles.logoCircle}>
             <Ionicons name="heart-outline" size={36} color="white" />
           </View>
-          <Text style={styles.title}>{t('SakshiConnect')}</Text>
+          <Text style={styles.title}>{t('Chakrika')}</Text>
           <Text style={styles.subtitle}>{t('Rural Healthcare Distribution')}</Text>
         </View>
 

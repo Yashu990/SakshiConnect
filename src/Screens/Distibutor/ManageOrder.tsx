@@ -63,7 +63,7 @@ const ManageOrder: React.FC<ManageOrderProps> = ({
       </View>
 
       {/* Offline notice */}
-      <View style={styles.offlineCard}>
+      {/* <View style={styles.offlineCard}>
         <Ionicons name="wifi-outline" size={20} color="#FF8C00" />
         <View style={{ marginLeft: 8, flex: 1 }}>
           <Text style={styles.offlineText}>Offline</Text>
@@ -78,7 +78,7 @@ const ManageOrder: React.FC<ManageOrderProps> = ({
 
       <Text style={styles.infoText}>
         Items shown in 'Offers' only if visible and in stock.
-      </Text>
+      </Text> */}
 
       {/* Products List */}
       {products.length === 0 ? (

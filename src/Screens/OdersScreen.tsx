@@ -5,11 +5,13 @@ import {
   TouchableOpacity,
   StyleSheet,
   FlatList,
-  SafeAreaView,
+
   StatusBar,
   ScrollView,
 } from 'react-native';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 type Order = {
   id: string;
   company: string;
@@ -20,6 +22,7 @@ type Order = {
 };
 
 const OrdersScreen = () => {
+  const navigation = useNavigation();
   const [selectedTab, setSelectedTab] = useState<'Pending' | 'Dispatched' | 'Delivered'>('Pending');
 
   // ✅ Sample Data
@@ -40,8 +43,8 @@ const OrdersScreen = () => {
 
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity>
-          <Text style={styles.menuIcon}>☰</Text>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back" size={22} color="#0F172A" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Orders</Text>
         <TouchableOpacity>
@@ -86,8 +89,8 @@ const OrdersScreen = () => {
                       item.status === 'Pending'
                         ? styles.badgePending
                         : item.status === 'Dispatched'
-                        ? styles.badgeDispatched
-                        : styles.badgeDelivered,
+                          ? styles.badgeDispatched
+                          : styles.badgeDelivered,
                     ]}>
                     <Text style={styles.badgeText}>{item.status}</Text>
                   </View>
