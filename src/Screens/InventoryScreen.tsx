@@ -57,8 +57,8 @@ const InventoryScreen = () => {
             
           </View>
 
-          <View style={styles.card}>
-            <Ionicons name="archive-outline" size={24} color="#007bff" />
+          <View style={styles.card} >
+            <Ionicons name="archive-outline" size={24} color="#007bff" onPress={() => navigation.navigate('StockManagePage')} />
             <Text style={styles.cardTitle}>Stock</Text>
             <Text style={styles.cardSubtitle}>Auto-added on delivery</Text>
             <View style={[styles.badge, { backgroundColor: '#e8f0ff' }]}>

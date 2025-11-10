@@ -1,3 +1,5 @@
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import {
   View,
@@ -9,12 +11,16 @@ import {
   StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { MainStackParamList } from '../../Navigation/types';
 // Icon components (you can replace with react-native-vector-icons)
 const Icon = ({ name, size = 24, color = '#000' }: { name: string; size?: number; color?: string }) => (
   <View style={{ width: size, height: size, backgroundColor: color, borderRadius: size / 2 }} />
 );
 
+type NavigationProp = NativeStackNavigationProp<MainStackParamList>;
+
 export default function DistProfileScreen() {
+  const navigation = useNavigation<NavigationProp>();
   const [isOnline, setIsOnline] = useState(false);
   const [showContactInOffers, setShowContactInOffers] = useState(true);
   const [serviceAreas] = useState(['Cuttack', 'Khordha']);
@@ -153,7 +159,7 @@ export default function DistProfileScreen() {
           </View>
 
           {/* Logout */}
-          <TouchableOpacity style={styles.logoutButton}>
+          <TouchableOpacity style={styles.logoutButton} onPress={()=>navigation.navigate('LoginPage')}>
             <Text style={styles.logoutIcon}>🚪</Text>
             <Text style={styles.logoutText}>Logout</Text>
           </TouchableOpacity>

@@ -1,3 +1,5 @@
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import {
   View,
@@ -9,12 +11,16 @@ import {
   ScrollView,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { MainStackParamList } from '../../Navigation/types';
+
+type NavigationType = NativeStackNavigationProp<MainStackParamList>;
 
 const ProfileScreen = () => {
   const [orderUpdates, setOrderUpdates] = useState(true);
   const [lowStock, setLowStock] = useState(false);
   const [paymentPreference, setPaymentPreference] = useState('COD');
   const [language, setLanguage] = useState('English');
+  const navigation = useNavigation<NavigationType>();
 
   return (
     <View style={styles.container}>
@@ -170,7 +176,7 @@ const ProfileScreen = () => {
         </TouchableOpacity>
 
         {/* Logout */}
-        <TouchableOpacity style={styles.logoutBtn}>
+        <TouchableOpacity style={styles.logoutBtn} onPress={()=>navigation.navigate('LoginPage')}>
           <Ionicons name="log-out-outline" size={20} color="#DC2626" />
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>

@@ -25,4 +25,6 @@ export type MainStackParamList = {
     PlaceOrderScreen : undefined;
     OffersScreen : undefined;
     PharmacistScreen : undefined;
+    StockManagePage: undefined;
+    DistProfileScreen:undefined;
 }

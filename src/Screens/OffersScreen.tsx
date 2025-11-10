@@ -8,13 +8,59 @@ import {
   Alert,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useOrders } from '../context/OrderContext';
+import { useInventory } from '../context/InventoryContext';
+
 const OffersScreen: React.FC = () => {
-  const handleCall = (name: string) => {
-    Alert.alert(`Calling ${name}`);
+  const { addOrder, makeCall } = useOrders();
+  const { getAvailableProducts } = useInventory();
+
+  const availableProducts = getAvailableProducts();
+
+  const handleCall = (product: any) => {
+    // Create a request order with product details
+    addOrder({
+      orderer_name: 'User Request',
+      orderer_type: 'Customer',
+      product_name: product.product_name,
+      product_id: product.id,
+      quantity: 0, // Will be filled by distributor
+      price_per_unit: product.unit_price,
+      total_price: 0,
+      distributor_name: product.distributor_name,
+      distributor_phone: product.distributor_phone,
+    });
+
+    // Show confirmation
+    Alert.alert(
+      'Request Sent',
+      `Your call request for ${product.product_name} has been sent to ${product.distributor_name}. They will see it in their Orders tab.`,
+      [{ text: 'OK' }]
+    );
+
+    // Open dialer
+    makeCall(product.distributor_phone, product.distributor_name);
   };
 
-  const handleWhatsApp = (name: string) => {
-    Alert.alert(`Opening WhatsApp chat with ${name}`);
+  const handleWhatsApp = (product: any) => {
+    // Create a request order
+    addOrder({
+      orderer_name: 'User Request',
+      orderer_type: 'Customer',
+      product_name: product.product_name,
+      product_id: product.id,
+      quantity: 0,
+      price_per_unit: product.unit_price,
+      total_price: 0,
+      distributor_name: product.distributor_name,
+      distributor_phone: product.distributor_phone,
+    });
+
+    Alert.alert(
+      'Request Sent',
+      `Your WhatsApp request for ${product.product_name} has been sent to ${product.distributor_name}. They will see it in their Orders tab.`,
+      [{ text: 'OK' }]
+    );
   };
 
   return (
@@ -23,79 +69,107 @@ const OffersScreen: React.FC = () => {
       <View style={styles.offlineBanner}>
         <Ionicons name="warning-outline" size={20} color="#A16207" />
         <Text style={styles.offlineText}>
-          You’re offline. Calls/WhatsApp will be saved and shared when online.
+          You're offline. Calls/WhatsApp will be saved and shared when online.
         </Text>
       </View>
 
-      {/* Offer Header */}
-      <View style={styles.offerCard}>
-        <Text style={styles.offerTitle}>Reusable Pad</Text>
-        <Text style={styles.offerSubtitle}>
-          Call/WhatsApp to order. Distributor will enter it; see status in
-          Orders.
+      {/* Header */}
+      <View style={styles.headerCard}>
+        <Text style={styles.headerTitle}>Available Products</Text>
+        <Text style={styles.headerSubtitle}>
+          Call/WhatsApp to order. Distributor will enter it; see status in Orders.
         </Text>
-        <View style={styles.deliveryTag}>
-          <Text style={styles.deliveryText}>Delivering in: Cuttack / Khordha</Text>
+      </View>
+
+      {availableProducts.length === 0 ? (
+        <View style={styles.emptyState}>
+          <Ionicons name="cube-outline" size={60} color="#CCC" />
+          <Text style={styles.emptyText}>No products available</Text>
+          <Text style={styles.emptySubtext}>
+            Products will appear here when distributors add them
+          </Text>
         </View>
-      </View>
+      ) : (
+        availableProducts.map((product) => (
+          <View key={product.id} style={styles.card}>
+            <View style={styles.cardHeader}>
+              <View>
+                <Text style={styles.productName}>{product.product_name}</Text>
+                {product.description && (
+                  <Text style={styles.productDescription}>{product.description}</Text>
+                )}
+              </View>
+              <View style={styles.stockBadge}>
+                <View style={styles.stockDot} />
+                <Text style={styles.stockText}>{product.quantity} in stock</Text>
+              </View>
+            </View>
 
-      {/* Distributor Cards */}
-      <View style={styles.card}>
-        <View style={styles.cardHeader}>
-          <Text style={styles.distributorName}>Maa Durga Enterprises</Text>
-          <View style={styles.verifiedTag}>
-            <Ionicons name="checkmark-circle" size={14} color="#22C55E" />
-            <Text style={styles.verifiedText}>Verified</Text>
+            <Text style={styles.distributorName}>{product.distributor_name}</Text>
+
+            <View style={styles.detailsRow}>
+              <View style={styles.detailItem}>
+                <Ionicons name="cash-outline" size={16} color="#6B7280" />
+                <Text style={styles.detailText}>₹{product.unit_price}/pack</Text>
+              </View>
+              <View style={styles.detailItem}>
+                <Ionicons name="cube-outline" size={16} color="#6B7280" />
+                <Text style={styles.detailText}>MOQ: {product.moq} packs</Text>
+              </View>
+            </View>
+
+            <View style={styles.detailsRow}>
+              <View style={styles.detailItem}>
+                <Ionicons name="time-outline" size={16} color="#6B7280" />
+                <Text style={styles.detailText}>Lead: {product.lead_time}</Text>
+              </View>
+              {product.service_areas.length > 0 && (
+                <View style={styles.detailItem}>
+                  <Ionicons name="location-outline" size={16} color="#6B7280" />
+                  <Text style={styles.detailText} numberOfLines={1}>
+                    {product.service_areas.slice(0, 2).join(', ')}
+                  </Text>
+                </View>
+              )}
+            </View>
+
+            {product.payment_modes.length > 0 && (
+              <View style={styles.paymentBadges}>
+                {product.payment_modes.map((mode, idx) => (
+                  <View key={idx} style={styles.paymentBadge}>
+                    <Text style={styles.paymentBadgeText}>{mode}</Text>
+                  </View>
+                ))}
+              </View>
+            )}
+
+            {product.seller_note && (
+              <View style={styles.noteCard}>
+                <Ionicons name="information-circle-outline" size={16} color="#2563EB" />
+                <Text style={styles.noteText}>{product.seller_note}</Text>
+              </View>
+            )}
+
+            <TouchableOpacity
+              style={styles.callButton}
+              onPress={() => handleCall(product)}>
+              <Ionicons name="call-outline" size={18} color="#fff" />
+              <Text style={styles.buttonText}>Call distributor</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.whatsappButton}
+              onPress={() => handleWhatsApp(product)}>
+              <Ionicons name="logo-whatsapp" size={18} color="#0F766E" />
+              <Text style={styles.whatsappText}>WhatsApp distributor</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.note}>
+              We'll note your request for the distributor.
+            </Text>
           </View>
-        </View>
-
-        <Text style={styles.price}>Price: ₹120 / pack</Text>
-        <Text style={styles.details}>MOQ: Min 10 packs</Text>
-        <Text style={styles.details}>Delivers to: Rampur Block</Text>
-
-        <TouchableOpacity
-          style={styles.callButton}
-          onPress={() => handleCall('Maa Durga Enterprises')}>
-          <Ionicons name="call-outline" size={18} color="#fff" />
-          <Text style={styles.buttonText}>Call distributor</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.whatsappButton}
-          onPress={() => handleWhatsApp('Maa Durga Enterprises')}>
-          <Ionicons name="logo-whatsapp" size={18} color="#0F766E" />
-          <Text style={styles.whatsappText}>WhatsApp distributor</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.note}>
-          We’ll note your request for the distributor.
-        </Text>
-      </View>
-
-      <View style={styles.card}>
-        <Text style={styles.distributorName}>Sakhi Self Help Group</Text>
-        <Text style={styles.price}>Price: ₹125 / pack</Text>
-        <Text style={styles.details}>MOQ: Min 5 packs</Text>
-        <Text style={styles.details}>Delivers to: —</Text>
-
-        <TouchableOpacity
-          style={styles.callButton}
-          onPress={() => handleCall('Sakhi Self Help Group')}>
-          <Ionicons name="call-outline" size={18} color="#fff" />
-          <Text style={styles.buttonText}>Call distributor</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.whatsappButton}
-          onPress={() => handleWhatsApp('Sakhi Self Help Group')}>
-          <Ionicons name="logo-whatsapp" size={18} color="#0F766E" />
-          <Text style={styles.whatsappText}>WhatsApp distributor</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.note}>
-          We’ll note your request for the distributor.
-        </Text>
-      </View>
+        ))
+      )}
     </ScrollView>
   );
 };
@@ -122,75 +196,138 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 14,
   },
-  offerCard: {
+  headerCard: {
     backgroundColor: '#fff',
     borderRadius: 12,
     padding: 16,
     marginBottom: 16,
     elevation: 1,
   },
-  offerTitle: {
+  headerTitle: {
     fontSize: 18,
     fontWeight: '700',
     color: '#111827',
   },
-  offerSubtitle: {
+  headerSubtitle: {
     fontSize: 14,
     color: '#4B5563',
     marginTop: 6,
-    marginBottom: 10,
   },
-  deliveryTag: {
-    backgroundColor: '#F3F4F6',
-    alignSelf: 'flex-start',
-    borderRadius: 6,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+  emptyState: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 80,
+    paddingHorizontal: 40,
   },
-  deliveryText: {
-    fontSize: 13,
-    color: '#374151',
+  emptyText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#999',
+    marginTop: 16,
+  },
+  emptySubtext: {
+    fontSize: 14,
+    color: '#BBB',
+    marginTop: 8,
+    textAlign: 'center',
   },
   card: {
     backgroundColor: '#fff',
     borderRadius: 16,
     padding: 16,
     marginBottom: 16,
-    elevation: 1,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
   },
   cardHeader: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 8,
   },
-  distributorName: {
+  productName: {
     fontSize: 16,
     fontWeight: '700',
     color: '#111827',
   },
-  verifiedTag: {
+  productDescription: {
+    fontSize: 13,
+    color: '#6B7280',
+    marginTop: 2,
+  },
+  stockBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#DCFCE7',
-    borderRadius: 20,
+    backgroundColor: '#D1FAE5',
     paddingHorizontal: 8,
-    paddingVertical: 2,
+    paddingVertical: 4,
+    borderRadius: 12,
     gap: 4,
   },
-  verifiedText: {
-    color: '#166534',
+  stockDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: '#10B981',
+  },
+  stockText: {
     fontSize: 12,
+    color: '#047857',
+    fontWeight: '500',
   },
-  price: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: '#111827',
-    marginTop: 6,
-  },
-  details: {
+  distributorName: {
     fontSize: 14,
-    color: '#4B5563',
-    marginTop: 2,
+    fontWeight: '600',
+    color: '#374151',
+    marginBottom: 12,
+  },
+  detailsRow: {
+    flexDirection: 'row',
+    gap: 16,
+    marginBottom: 8,
+  },
+  detailItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    flex: 1,
+  },
+  detailText: {
+    fontSize: 13,
+    color: '#6B7280',
+  },
+  paymentBadges: {
+    flexDirection: 'row',
+    gap: 6,
+    marginTop: 8,
+    marginBottom: 12,
+  },
+  paymentBadge: {
+    backgroundColor: '#F3F4F6',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 12,
+  },
+  paymentBadgeText: {
+    fontSize: 12,
+    color: '#374151',
+    fontWeight: '500',
+  },
+  noteCard: {
+    flexDirection: 'row',
+    backgroundColor: '#EFF6FF',
+    padding: 10,
+    borderRadius: 8,
+    gap: 8,
+    marginBottom: 12,
+  },
+  noteText: {
+    fontSize: 13,
+    color: '#1E40AF',
+    flex: 1,
   },
   callButton: {
     backgroundColor: '#06B6D4',
