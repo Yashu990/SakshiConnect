@@ -3,19 +3,20 @@ import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'rea
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MainStackParamList } from '../Navigation/types';
-import { useTranslation } from 'react-i18next'; // 👈 Add this
+import { useTranslation } from 'react-i18next'; // ✅ i18n Hook
 
 type NavigationProp = NativeStackNavigationProp<MainStackParamList>;
 
 const LearningScreen = () => {
   const navigation = useNavigation<NavigationProp>();
-  const { t } = useTranslation(); // 👈 Initialize translator
+  const { t } = useTranslation(); // ✅ Translation hook
 
   return (
     <View style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.heading}>{t('Learning')}</Text>
-        <Text style={styles.subHeading}>{t('Learn How To Use')}</Text>
+        {/* 👇 Translated Headings */}
+        <Text style={styles.heading}>{t('learning.title')}</Text>
+        <Text style={styles.subHeading}>{t('learning.subtitle')}</Text>
 
         <View style={styles.grid}>
           {/* Card 1 */}
@@ -23,8 +24,8 @@ const LearningScreen = () => {
             <View style={styles.iconContainer}>
               <Image source={require('../images/MenstrualCup.png')} style={styles.icon} />
             </View>
-            <Text style={styles.title}>{t('Menstrual Cup')}</Text>
-            <Text style={styles.details}>{t('LearningDetails')}</Text>
+            <Text style={styles.title}>{t('learning.cards.menstrualCup.title')}</Text>
+            <Text style={styles.details}>{t('learning.cards.menstrualCup.details')}</Text>
           </TouchableOpacity>
 
           {/* Card 2 */}
@@ -32,8 +33,8 @@ const LearningScreen = () => {
             <View style={styles.iconContainer}>
               <Image source={require('../images/ReusablePad.png')} style={styles.icon} />
             </View>
-            <Text style={styles.title}>{t('Reusable Pads')}</Text>
-            <Text style={styles.details}>{t('Learning Details')}</Text>
+            <Text style={styles.title}>{t('learning.cards.reusablePads.title')}</Text>
+            <Text style={styles.details}>{t('learning.cards.reusablePads.details')}</Text>
           </TouchableOpacity>
 
           {/* Card 3 */}
@@ -41,8 +42,8 @@ const LearningScreen = () => {
             <View style={styles.iconContainer}>
               <Image source={require('../images/reuse.png')} style={styles.icon} />
             </View>
-            <Text style={styles.title}>{t('Period Panties')}</Text>
-            <Text style={styles.details}>{t('Learning Details')}</Text>
+            <Text style={styles.title}>{t('learning.cards.periodPanties.title')}</Text>
+            <Text style={styles.details}>{t('learning.cards.periodPanties.details')}</Text>
           </TouchableOpacity>
 
           {/* Card 4 */}
@@ -50,8 +51,8 @@ const LearningScreen = () => {
             <View style={styles.iconContainer}>
               <Image source={require('../images/Straterkit.png')} style={styles.icon} />
             </View>
-            <Text style={styles.title}>{t('Starter Kit')}</Text>
-            <Text style={styles.details}>{t('Learning Details')}</Text>
+            <Text style={styles.title}>{t('learning.cards.starterKit.title')}</Text>
+            <Text style={styles.details}>{t('learning.cards.starterKit.details')}</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

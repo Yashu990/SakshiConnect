@@ -15,148 +15,100 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MainStackParamList } from '../Navigation/types';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import { useTranslation } from 'react-i18next'; // ✅ Import for translations
 
 type NavigationProp = NativeStackNavigationProp<MainStackParamList>;
 
 const HomeScreen = ({ route }: any) => {
   const navigation = useNavigation<NavigationProp>();
   const [showAlert, setShowAlert] = useState(false);
-  const currentRoute = route?.name || 'Home';
+  const { t } = useTranslation(); // ✅ Hook to get translations
 
   const highlights = [
-    { id: 1, title: 'Menstrual Cup', image: require('../images/MenstrualCup.png') },
-    { id: 2, title: 'Cloth Pads', image: require('../images/liner.png') },
-    { id: 3, title: 'Panty Liners', image: require('../images/reuse.png') },
-    { id: 4, title: 'Period Underwear', image: require('../images/Straterkit.png') },
+    { id: 1, title: t('MenstrualCup'), image: require('../images/MenstrualCup.png') },
+    { id: 2, title: t('ClothPads'), image: require('../images/liner.png') },
+    { id: 3, title: t('PantyLiners'), image: require('../images/reuse.png') },
+    { id: 4, title: t('PeriodUnderwear'), image: require('../images/Straterkit.png') },
   ];
 
   const awareness = [
-    { id: 1, title: 'Safe & Sustainable Menstrual Health', image: require('../images/help group.png') },
-    { id: 2, title: 'Reusable Awareness', image: require('../images/help group.png') },
+    { id: 1, title: t('SafeSustainable'), image: require('../images/help group.png') },
+    { id: 2, title: t('ReusableAwareness'), image: require('../images/help group.png') },
   ];
 
   const bestPrice = [
-    { id: 1, title: 'Menstrual Cup', image: require('../images/MenstrualCup.png'), price: 150 },
-    { id: 2, title: 'Cloth Pad', image: require('../images/ReusablePad.png'), price: 180 },
+    { id: 1, title: t('MenstrualCup'), image: require('../images/MenstrualCup.png'), price: 150 },
+    { id: 2, title: t('ClothPads'), image: require('../images/ReusablePad.png'), price: 180 },
   ];
 
   const viewed = [
-    // { id: 1, title: 'Cup', image: require('../images/cup.png') },
-    { id: 2, title: 'Underwear', image: require('../images/reuse.png') },
-    { id: 3, title: 'Cloth Pad', image: require('../images/ReusablePad.png') },
-    { id: 4, title: 'Cup', image: require('../images/MenstrualCup.png') },
-    { id: 5, title: 'Panty Liner', image: require('../images/Straterkit.png') },
+    { id: 2, title: t('Underwear'), image: require('../images/reuse.png') },
+    { id: 3, title: t('ClothPads'), image: require('../images/ReusablePad.png') },
+    { id: 4, title: t('MenstrualCup'), image: require('../images/MenstrualCup.png') },
+    { id: 5, title: t('PantyLiners'), image: require('../images/Straterkit.png') },
   ];
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#f9f9f9" barStyle="dark-content" />
-       <View style={styles.profile}>
-          <TouchableOpacity>
-            <View style={styles.profileSection}>
-              <Image
-                source={{ uri: 'https://i.pravatar.cc/100' }}
-                style={styles.profileImage}
-              />
-              <View>
-                <Text style={styles.welcomeText}>Welcome, Anjali</Text>
-                <Text style={styles.subText}>Pharmacist Leader</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setShowAlert(true)} style={styles.iconButton}>
-            <Ionicons name="notifications-outline" size={26} color="#333" />
-          </TouchableOpacity>
+      <View style={styles.profile}>
+        <View style={styles.profileSection}>
+          <Image
+            source={{ uri: 'https://i.pravatar.cc/100' }}
+            style={styles.profileImage}
+          />
+          <View>
+            <Text style={styles.welcomeText}>{t('WelcomeUser', { name: 'Anjali' })}</Text>
+            <Text style={styles.subText}>{t('PharmacistLeader')}</Text>
+          </View>
         </View>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-       
-        
-        {/* HEADER */}
-        {/* <View style={styles.header}>
-          <TouchableOpacity>
-            <View style={styles.profileSection}>
-              <Image
-                source={{ uri: 'https://i.pravatar.cc/100' }}
-                style={styles.profileImage}
-              />
-              <View>
-                <Text style={styles.welcomeText}>Welcome, Anjali</Text>
-                <Text style={styles.subText}>Pharmacist Leader</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setShowAlert(true)} style={styles.iconButton}>
-            <Ionicons name="notifications-outline" size={26} color="#333" />
-          </TouchableOpacity>
-        </View> */}
-      
+        <TouchableOpacity onPress={() => setShowAlert(true)} style={styles.iconButton}>
+          <Ionicons name="notifications-outline" size={26} color="#333" />
+        </TouchableOpacity>
+      </View>
 
-        {/* PRODUCT HIGHLIGHTS */}
-        <Text style={styles.sectionTitle}>Products' Highlights</Text>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Text style={styles.sectionTitle}>{t('ProductsHighlights')}</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
-          {highlights.map((item, index) => (
+          {highlights.map((item) => (
             <View key={item.id} style={styles.highlightCard}>
               <Image source={item.image} style={styles.highlightImage} />
-              <Text style={[
-                styles.highlightTitle,
-                { color: index === 0 ? '#black' : index === 1 ? '#black' : '#black' },
-              ]}>
-                {item.title}
-              </Text>
-              <Text style={styles.highlightDesc}>
-                {index === 0 ? 'Large, 5-pack' : index === 1 ? 'Standard size' : 'Teen size, 3-pack'}
-              </Text>
-              <Text style={[
-                styles.highlightPrice,
-                { color: index === 0 ? '#15803d' : index === 1 ? '#15803d' : '#15803d' },
-              ]}>
-                {index === 0 ? '₹250/pack' : index === 1 ? '₹300 each' : '₹180/pack'}
-              </Text>
+              <Text style={styles.highlightTitle}>{item.title}</Text>
+              <Text style={styles.highlightDesc}>{t('ProductDesc')}</Text>
+              <Text style={styles.highlightPrice}>{t('ProductPrice')}</Text>
             </View>
           ))}
         </ScrollView>
 
-        {/* NEW AWARENESS */}
-        <Text style={styles.sectionTitle}>New Awareness</Text>
+        <Text style={styles.sectionTitle}>{t('NewAwareness')}</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
           {awareness.map(item => (
             <View key={item.id} style={styles.awarenessCard}>
               <Image source={item.image} style={styles.awarenessImage} />
               <View style={styles.awarenessTextBox}>
                 <Text style={styles.awarenessTitle}>{item.title}</Text>
-                <Text style={styles.awarenessDesc}>
-                  Learn about the benefits of reusable products for your community.
-                </Text>
+                <Text style={styles.awarenessDesc}>{t('AwarenessDesc')}</Text>
                 <TouchableOpacity style={styles.learnMoreBtn}>
-                  <Text style={styles.learnMoreText}>Learn More</Text>
+                  <Text style={styles.learnMoreText}>{t('LearnMore')}</Text>
                 </TouchableOpacity>
               </View>
             </View>
           ))}
         </ScrollView>
 
-        {/* LEARN HOW TO USE */}
         <View style={styles.learnContainer}>
-          <Text style={styles.learnTitle}>Learn How To Use</Text>
-          {[1, 2, 3].map((_, index) => (
+          <Text style={styles.learnTitle}>{t('LearnHowToUse')}</Text>
+          {[1, 2, 3].map((index) => (
             <TouchableOpacity key={index}>
               <View style={styles.learnCard}>
                 <Image source={require('../images/help group.png')} style={styles.learnImage} />
-                <Text style={styles.learnText}>
-                  {index === 0
-                    ? 'Discover and explore reusable products.'
-                    : index === 1
-                      ? 'Compare prices and choose the best deal.'
-                      : 'Place your order and get products delivered fast.'}
-                </Text>
+                <Text style={styles.learnText}>{t(`LearnStep${index}`)}</Text>
               </View>
             </TouchableOpacity>
           ))}
         </View>
 
-        {/* BEST PRICE */}
-        <Text style={styles.sectionTitle}>Today's Best Price</Text>
+        <Text style={styles.sectionTitle}>{t('BestPrice')}</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
           {bestPrice.map(item => (
             <View key={item.id} style={styles.bestPriceCard}>
@@ -164,17 +116,15 @@ const HomeScreen = ({ route }: any) => {
               <View style={styles.bestPriceTextBox}>
                 <Text style={styles.bestPriceTitle}>{item.title}</Text>
                 <Text style={styles.bestPricePrice}>
-                  ₹{item.price}{' '}
-                  <Text style={styles.strikePrice}>₹199</Text>
+                  ₹{item.price} <Text style={styles.strikePrice}>₹199</Text>
                 </Text>
-                <Text style={styles.bestPriceVendor}>by EcoFlow Distributors</Text>
+                <Text style={styles.bestPriceVendor}>{t('Vendor')}</Text>
               </View>
             </View>
           ))}
         </ScrollView>
 
-        {/* YOU VIEWED */}
-        <Text style={styles.sectionTitle}>You viewed</Text>
+        <Text style={styles.sectionTitle}>{t('YouViewed')}</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
           {viewed.map(item => (
             <View key={item.id} style={styles.viewedCard}>
@@ -187,34 +137,31 @@ const HomeScreen = ({ route }: any) => {
         </ScrollView>
       </ScrollView>
 
-      {/* FOOTER NAVBAR */}
-      {/* <Footer /> */}
-
-      {/* ALERT MODAL - FIXED */}
+      {/* ALERT MODAL */}
       <Modal visible={showAlert} transparent animationType="fade" onRequestClose={() => setShowAlert(false)}>
         <TouchableWithoutFeedback onPress={() => setShowAlert(false)}>
           <View style={styles.modalOverlay}>
             <TouchableWithoutFeedback>
               <View style={styles.modalBox}>
-                <Text style={styles.modalTitle}>Alerts</Text>
+                <Text style={styles.modalTitle}>{t('Alerts')}</Text>
 
                 <View style={styles.alertWarning}>
                   <Ionicons name="warning-outline" size={22} color="#ff8c00" style={styles.alertIcon} />
-                  <Text style={styles.alertText}>Low stock on Cloth Pads — only 5 units left.</Text>
+                  <Text style={styles.alertText}>{t('AlertLowStock')}</Text>
                 </View>
 
                 <View style={styles.alertInfo}>
                   <Ionicons name="information-circle-outline" size={22} color="#0284c7" style={styles.alertIcon} />
-                  <Text style={styles.alertText}>New awareness content added — check "Reusable Awareness".</Text>
+                  <Text style={styles.alertText}>{t('AlertNewContent')}</Text>
                 </View>
 
                 <View style={styles.alertSuccess}>
                   <Ionicons name="checkmark-circle-outline" size={22} color="#16a34a" style={styles.alertIcon} />
-                  <Text style={styles.alertText}>Restock successful — Cloth Pads added to inventory.</Text>
+                  <Text style={styles.alertText}>{t('AlertRestock')}</Text>
                 </View>
 
                 <TouchableOpacity onPress={() => setShowAlert(false)} style={styles.closeBtn}>
-                  <Text style={styles.closeBtnText}>Close</Text>
+                  <Text style={styles.closeBtnText}>{t('Close')}</Text>
                 </TouchableOpacity>
               </View>
             </TouchableWithoutFeedback>
@@ -226,6 +173,8 @@ const HomeScreen = ({ route }: any) => {
 };
 
 export default HomeScreen;
+
+
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#f9f9f901', marginTop:-25 },

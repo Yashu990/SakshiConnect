@@ -1,45 +1,39 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
 
 const LanguageSelector = () => {
-  const { language, changeLanguage } = useLanguage();
+  const { setLanguage, language } = useLanguage() as any;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Select Language</Text>
-
-      {[
-        { code: 'en', label: 'English' },
-        { code: 'hi', label: 'हिन्दी' },
-        { code: 'or', label: 'ଓଡ଼ିଆ' },
-      ].map((lang) => (
-        <TouchableOpacity
-          key={lang.code}
-          style={[
-            styles.button,
-            language === lang.code && { backgroundColor: '#007bff' },
-          ]}
-          onPress={() => changeLanguage(lang.code)}
-        >
-          <Text style={{ color: language === lang.code ? '#fff' : '#000' }}>
-            {lang.label}
-          </Text>
-        </TouchableOpacity>
-      ))}
+      <TouchableOpacity
+        style={[styles.button, language === 'en' && styles.active]}
+        onPress={() => setLanguage('en')}>
+        <Text style={styles.text}>English</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, language === 'hi' && styles.active]}
+        onPress={() => setLanguage('hi')}>
+        <Text style={styles.text}>हिन्दी</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
-export default LanguageSelector;
-
 const styles = StyleSheet.create({
-  container: { padding: 20 },
-  title: { fontSize: 18, fontWeight: 'bold', marginBottom: 10 },
+  container: { flexDirection: 'row', justifyContent: 'center', marginVertical: 10 },
   button: {
-    backgroundColor: '#f1f5f9',
-    padding: 10,
+    backgroundColor: '#eee',
+    marginHorizontal: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 14,
     borderRadius: 8,
-    marginVertical: 5,
   },
+  active: {
+    backgroundColor: '#2563EB',
+  },
+  text: { color: '#000', fontWeight: '600' },
 });
+
+export default LanguageSelector;
