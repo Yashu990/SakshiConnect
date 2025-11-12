@@ -33,17 +33,17 @@ const HomeScreen = ({ route }: any) => {
 
   const awareness = [
     { id: 1, title: t('SafeSustainable'), image: require('../images/help group.png') },
-    { id: 2, title: t('ReusableAwareness'), image: require('../images/help group.png') },
+    { id: 2, title: t('ReusableAwareness'), image: require('../images/liner.png') },
   ];
 
   const bestPrice = [
     { id: 1, title: t('MenstrualCup'), image: require('../images/MenstrualCup.png'), price: 150 },
-    { id: 2, title: t('ClothPads'), image: require('../images/ReusablePad.png'), price: 180 },
+    { id: 2, title: t('ClothPads'), image: require('../images/liner.png'), price: 180 },
   ];
 
   const viewed = [
     { id: 2, title: t('Underwear'), image: require('../images/reuse.png') },
-    { id: 3, title: t('ClothPads'), image: require('../images/ReusablePad.png') },
+    { id: 3, title: t('ClothPads'), image: require('../images/liner.png') },
     { id: 4, title: t('MenstrualCup'), image: require('../images/MenstrualCup.png') },
     { id: 5, title: t('PantyLiners'), image: require('../images/Straterkit.png') },
   ];
@@ -98,15 +98,33 @@ const HomeScreen = ({ route }: any) => {
 
         <View style={styles.learnContainer}>
           <Text style={styles.learnTitle}>{t('LearnHowToUse')}</Text>
-          {[1, 2, 3].map((index) => (
-            <TouchableOpacity key={index}>
-              <View style={styles.learnCard}>
-                <Image source={require('../images/help group.png')} style={styles.learnImage} />
-                <Text style={styles.learnText}>{t(`LearnStep${index}`)}</Text>
-              </View>
-            </TouchableOpacity>
-          ))}
+
+          {/* Step 1 - Cup */}
+          <TouchableOpacity onPress={() => navigation.navigate('MenstrualCup')}>
+            <View style={styles.learnCard}>
+              <Image source={require('../images/MenstrualCup.png')} style={styles.learnImage} />
+              <Text style={styles.learnText}>{t('LearnStep1')}</Text>
+            </View>
+          </TouchableOpacity>
+
+          {/* Step 2 - Liner */}
+          <TouchableOpacity onPress={() => navigation.navigate('ReusablePads')}>
+            <View style={styles.learnCard}>
+              <Image source={require('../images/liner.png')} style={styles.learnImage} />
+              <Text style={styles.learnText}>{t('LearnStep2')}</Text>
+            </View>
+          </TouchableOpacity>
+
+          {/* Step 3 - Reuse */}
+          <TouchableOpacity onPress={() => navigation.navigate('PeriodPanties')}>
+            <View style={styles.learnCard}>
+              <Image source={require('../images/reuse.png')} style={styles.learnImage} />
+              <Text style={styles.learnText}>{t('LearnStep3')}</Text>
+            </View>
+          </TouchableOpacity>
         </View>
+
+
 
         <Text style={styles.sectionTitle}>{t('BestPrice')}</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
@@ -177,15 +195,15 @@ export default HomeScreen;
 
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f9f9f901', marginTop:-25 },
-  scrollContent: { padding: 10,},
+  container: { flex: 1, backgroundColor: '#f9f9f901', marginTop: -25 },
+  scrollContent: { padding: 10, },
 
   header: {
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-    marginBottom: 12, backgroundColor: '#fff',  
-    paddingVertical: 10, paddingHorizontal: 5, 
+    marginBottom: 12, backgroundColor: '#fff',
+    paddingVertical: 10, paddingHorizontal: 5,
   },
-  profileSection: { flexDirection: 'row', alignItems: 'center',  },
+  profileSection: { flexDirection: 'row', alignItems: 'center', },
   profileImage: { width: 44, height: 44, borderRadius: 22, marginRight: 10, borderWidth: 1, borderColor: '#ddd' },
   welcomeText: { fontSize: 18, fontWeight: '700', color: '#c0342e' },
   subText: { color: '#161212ff' },
@@ -198,14 +216,14 @@ const styles = StyleSheet.create({
     width: 160, marginRight: 12, backgroundColor: '#fff', borderRadius: 16,
     padding: 10, borderWidth: 0.8, borderColor: '#eee', elevation: 1,
   },
-  profile:{
-    flexDirection:'row',
-    justifyContent:'space-between',
-    backgroundColor:'#fff',
-    width:430,
-    paddingHorizontal:10,
-    paddingVertical:10,
-    marginTop:30
+  profile: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#fff',
+    width: 430,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    marginTop: 30
   },
   highlightImage: { width: 140, height: 95, borderRadius: 12, marginBottom: 8, resizeMode: 'contain' },
   highlightTitle: { fontSize: 15, fontWeight: '700', marginBottom: 2 },
@@ -217,7 +235,7 @@ const styles = StyleSheet.create({
   awarenessTextBox: { padding: 12 },
   awarenessTitle: { fontSize: 16, fontWeight: '700', marginBottom: 6 },
   awarenessDesc: { color: '#555', marginBottom: 10 },
-  learnMoreBtn: { backgroundColor: '#15803d', paddingVertical: 8, paddingHorizontal: 14, borderRadius: 8, width:110 },
+  learnMoreBtn: { backgroundColor: '#15803d', paddingVertical: 8, paddingHorizontal: 14, borderRadius: 8, width: 110 },
   learnMoreText: { color: '#fff', fontWeight: '700' },
 
   learnContainer: { padding: 16, backgroundColor: '#f2f2f2' },
@@ -233,7 +251,7 @@ const styles = StyleSheet.create({
     width: 250, height: 90, marginRight: 12, backgroundColor: '#fff', borderRadius: 12,
     flexDirection: 'row', alignItems: 'center', padding: 10, elevation: 3,
   },
-  
+
   bestPriceImage: { width: 60, height: 60, borderRadius: 10, marginRight: 10 },
   bestPriceTextBox: { flex: 1 },
   bestPriceTitle: { fontWeight: '700', fontSize: 14 },

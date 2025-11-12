@@ -64,7 +64,7 @@ const LoginPage = () => {
 
   return (
     <ImageBackground
-      source={require('../images/logo.png')}
+      source={require('../images/logo1.png')}
       style={styles.background}
          // 👈 ensures full background fit
     >
@@ -72,10 +72,10 @@ const LoginPage = () => {
 
       <View style={styles.container}>
         {/* Top bar */}
-        <View style={styles.topBar}>
+        {/* <View style={styles.topBar}>
           <Text style={styles.topText}>🌐 {i18n.language.toUpperCase()}</Text>
           <Ionicons name="headset-outline" size={22} color="#0a0a0a" />
-        </View>
+        </View> */}
 
         {/* Logo section */}
         <View style={styles.logoContainer}>
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFill,
-    backgroundColor: 'rgba(255, 255, 255, 0.06)',
+    backgroundColor: 'rgba(243, 232, 232, 0.64)',
   },
 
   container: {
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
   },
   topText: {
     fontSize: 16,
-    color: '#0B6E4F',
+    color: '#0b6e4f34',
     fontWeight: '500',
   },
   logoContainer: {
@@ -332,11 +332,11 @@ const styles = StyleSheet.create({
   },
   secure: {
     fontSize: 16,
-    color: '#226953',
+    color: '#020c09f8',
   },
   secure1: {
     fontSize: 16,
-    color: '#226953',
+    color: '#0d4735ff',
     textDecorationLine: 'underline',
   },
 });

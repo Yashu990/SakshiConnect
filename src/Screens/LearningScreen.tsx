@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MainStackParamList } from '../Navigation/types';
@@ -14,6 +14,8 @@ const LearningScreen = () => {
   return (
     <View style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.container}>
+              <StatusBar backgroundColor="#f9f9f9" barStyle="dark-content" />
+        
         {/* 👇 Translated Headings */}
         <Text style={styles.heading}>{t('learning.title')}</Text>
         <Text style={styles.subHeading}>{t('learning.subtitle')}</Text>

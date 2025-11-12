@@ -1,26 +1,30 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import MainStack from './Navigation/MainStack';
-import { I18nextProvider } from 'react-i18next';
+
+// 🗣 i18n setup
+import './i18n';
 import i18n from './i18n';
-import { LanguageProvider } from '../context/LanguageContext';
+import { I18nextProvider } from 'react-i18next';
+
+// 🧩 Contexts
+import { LanguageProvider } from './context/LanguageContext'; // ✅ fixed path (was ../context)
 import { OrderProvider } from './context/OrderContext';
 import { InventoryProvider } from './context/InventoryContext';
-import './i18n';
 
 const App = () => {
   return (
-    <InventoryProvider>
-      <OrderProvider>
-        <LanguageProvider>
-          <I18nextProvider i18n={i18n}>
+    <I18nextProvider i18n={i18n}>
+      <LanguageProvider>
+        <OrderProvider>
+          <InventoryProvider>
             <NavigationContainer>
               <MainStack />
             </NavigationContainer>
-          </I18nextProvider>
-        </LanguageProvider>
-      </OrderProvider>
-    </InventoryProvider>
+          </InventoryProvider>
+        </OrderProvider>
+      </LanguageProvider>
+    </I18nextProvider>
   );
 };
 

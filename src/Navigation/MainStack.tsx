@@ -28,6 +28,8 @@ import HomeScreen from '../Screens/HomeScreen';
 import OffersScreen from '../Screens/OffersScreen';
 import PharmacistScreen from '../Screens/Pharmacist/PharmacistScreen';
 import StockManagePage from '../Screens/StockManagePage';
+
+import ApiConfigScreen from '../config/ApiConfig';
 import DistProfileScreen from '../Screens/Distibutor/DistProfileScreen';
 
 
@@ -67,6 +69,7 @@ const MainStack = () => {
       <Stack.Screen name='OffersScreen' component={OffersScreen}/>
       <Stack.Screen name='StockManagePage' component={StockManagePage}/>
       <Stack.Screen name='DistProfileScreen' component={DistProfileScreen}/>
+      <Stack.Screen name='ApiConfigScreen' component={ApiConfigScreen}/>
     </Stack.Navigator>
   )
 }

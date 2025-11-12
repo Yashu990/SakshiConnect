@@ -6,21 +6,30 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
+  StatusBar
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next'; // ✅ Added
 import { MainStackParamList } from '../Navigation/types';
+// import { StatusBar } from 'react-native/types_generated/index';
+
 type NavigationProp = NativeStackNavigationProp<MainStackParamList>;
 
 const ShopScreen = () => {
   const navigation = useNavigation<NavigationProp>();
+  const { t } = useTranslation(); // ✅ Hook for translations
+
   return (
+    
     <View style={styles.container}>
+            <StatusBar backgroundColor="#f9f9f9" barStyle="dark-content" />
+      
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.title}>SakshiConnect Shop</Text>
+          <Text style={styles.title}>{t('shop.ShopTitle')}</Text>
           <TouchableOpacity>
             <Ionicons name="help-circle-outline" size={24} color="#374151" />
           </TouchableOpacity>
@@ -29,47 +38,62 @@ const ShopScreen = () => {
         {/* Info Banner */}
         <View style={styles.infoBanner}>
           <Ionicons name="call-outline" size={20} color="#374151" />
-          <Text style={styles.infoText}>
-            Compare prices, then Call or WhatsApp to order.
-          </Text>
+          <Text style={styles.infoText}>{t('shop.ShopInfo')}</Text>
           <Ionicons name="logo-whatsapp" size={22} color="#22C55E" />
         </View>
 
-        {/* Product Grid (Manual - no map) */}
+        {/* Product Grid */}
         <View style={styles.grid}>
-          <TouchableOpacity onPress={()=>navigation.navigate('OffersScreen')} style={styles.card}>
-            <Image source={require('../images/MenstrualCup.png')} style={styles.image} />
-            <Text style={styles.productName}>Menstrual Cup</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('OffersScreen')}
+            style={styles.card}
+          >
+            <Image
+              source={require('../images/MenstrualCup.png')}
+              style={styles.image}
+            />
+            <Text style={styles.productName}>{t('shop.Menstrual Cup')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.card}>
-            <Image source={require('../images/ReusablePad.png')} style={styles.image} />
-            <Text style={styles.productName}>Reusable Pads</Text>
+            <Image
+              source={require('../images/ReusablePad.png')}
+              style={styles.image}
+            />
+            <Text style={styles.productName}>{t('shop.Reusable Pads')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.card}>
-            <Image source={require('../images/reuse.png')} style={styles.image} />
-            <Text style={styles.productName}>Period Panties</Text>
+            <Image
+              source={require('../images/reuse.png')}
+              style={styles.image}
+            />
+            <Text style={styles.productName}>{t('shop.Period Panties')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.card}>
-            <Image source={require('../images/Straterkit.png')} style={styles.image} />
-            <Text style={styles.productName}>Starter Kit</Text>
+            <Image
+              source={require('../images/Straterkit.png')}
+              style={styles.image}
+            />
+            <Text style={styles.productName}>{t('shop.Starter Kit')}</Text>
           </TouchableOpacity>
         </View>
 
         {/* Recently Viewed */}
         <View style={styles.recentlyViewed}>
-          <Text style={styles.sectionTitle}>Recently Viewed</Text>
+          <Text style={styles.sectionTitle}>{t('shop.Recently Viewed')}</Text>
           <View style={styles.recentItems}>
             <View style={styles.recentTag}>
               <Ionicons name="egg-outline" size={16} color="#F87171" />
-              <Text style={styles.recentText}>Beginner’s Cup</Text>
+              <Text style={styles.recentText}>{t('shop.Beginner’s Cup')}</Text>
             </View>
 
             <View style={styles.recentTag}>
               <Ionicons name="leaf-outline" size={16} color="#F87171" />
-              <Text style={styles.recentText}>Eco-friendly Pads</Text>
+              <Text style={styles.recentText}>
+                {t('shop.Eco-friendly Pads')}
+              </Text>
             </View>
           </View>
         </View>
