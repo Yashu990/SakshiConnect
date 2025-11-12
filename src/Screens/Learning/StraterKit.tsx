@@ -1,38 +1,43 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 const StraterKit = () => {
+  const navigation = useNavigation();
+  const { t } = useTranslation();
+
   return (
     <View style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.container}>
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons name="arrow-back" size={22} color="#0F172A" />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>Menstrual Cup Usage</Text>
+          <Text style={styles.headerTitle}>{t('menstrualCup.title', 'Menstrual Cup Usage')}</Text>
         </View>
 
         {/* Description */}
         <Text style={styles.description}>
-          Learn the correct way to use a menstrual cup with these simple steps.
+          {t('menstrualCup.description', 'Learn the correct way to use a menstrual cup with these simple steps.')}
         </Text>
 
         {/* Steps */}
         <View style={styles.stepCard}>
           <View style={styles.stepTextContainer}>
-            <Text style={styles.stepTitle}>Step 1</Text>
-            <Text style={styles.stepDescription}>Wash your hands with soap and water.</Text>
+            <Text style={styles.stepTitle}>{t('menstrualCup.step1Title', 'Step 1')}</Text>
+            <Text style={styles.stepDescription}>{t('menstrualCup.step1Description', 'Wash your hands with soap and water.')}</Text>
           </View>
           <Image source={require('../../images/cup.png')} style={styles.stepImage} />
         </View>
 
         <View style={styles.stepCard}>
           <View style={styles.stepTextContainer}>
-            <Text style={styles.stepTitle}>Step 2</Text>
+            <Text style={styles.stepTitle}>{t('menstrualCup.step2Title', 'Step 2')}</Text>
             <Text style={styles.stepDescription}>
-              Fold the menstrual cup to prepare for insertion.
+              {t('menstrualCup.step2Description', 'Fold the menstrual cup to prepare for insertion.')}
             </Text>
           </View>
           <Image source={require('../../images/liner.png')} style={styles.stepImage} />
@@ -40,9 +45,9 @@ const StraterKit = () => {
 
         <View style={styles.stepCard}>
           <View style={styles.stepTextContainer}>
-            <Text style={styles.stepTitle}>Step 3</Text>
+            <Text style={styles.stepTitle}>{t('menstrualCup.step3Title', 'Step 3')}</Text>
             <Text style={styles.stepDescription}>
-              Insert the cup gently into the vaginal canal.
+              {t('menstrualCup.step3Description', 'Insert the cup gently into the vaginal canal.')}
             </Text>
           </View>
           <Image source={require('../../images/reuse.png')} style={styles.stepImage} />
@@ -50,7 +55,7 @@ const StraterKit = () => {
 
         {/* Audio Section */}
         <View style={styles.audioCard}>
-          <Text style={styles.audioTitle}>Listen (offline)</Text>
+          <Text style={styles.audioTitle}>{t('menstrualCup.audioTitle', 'Listen (offline)')}</Text>
           <TouchableOpacity style={styles.playButton}>
             <Ionicons name="play" size={28} color="#fff" />
           </TouchableOpacity>
@@ -61,12 +66,12 @@ const StraterKit = () => {
             <Text style={styles.timeText}>1:05</Text>
             <Text style={styles.timeText}>4:20</Text>
           </View>
-          <Text style={styles.offlineText}>Audio works offline</Text>
+          <Text style={styles.offlineText}>{t('menstrualCup.audioOffline', 'Audio works offline')}</Text>
         </View>
 
         {/* Video Section */}
         <View style={styles.videoCard}>
-          <Text style={styles.videoTitle}>Watch Video</Text>
+          <Text style={styles.videoTitle}>{t('menstrualCup.videoTitle', 'Watch Video')}</Text>
           <View style={styles.videoBox}>
             <Image
             //   source={require('../images/video-thumb.png')}
@@ -75,9 +80,9 @@ const StraterKit = () => {
             <Ionicons name="play-circle" size={48} color="#fff" style={styles.videoPlayIcon} />
           </View>
           <TouchableOpacity style={styles.youtubeButton}>
-            <Text style={styles.youtubeText}>Open on YouTube</Text>
+            <Text style={styles.youtubeText}>{t('menstrualCup.youtubeButton', 'Open on YouTube')}</Text>
           </TouchableOpacity>
-          <Text style={styles.requireText}>Requires internet</Text>
+          <Text style={styles.requireText}>{t('menstrualCup.requireInternet', 'Requires internet')}</Text>
         </View>
       </ScrollView>
     </View>

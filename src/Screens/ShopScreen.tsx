@@ -22,10 +22,10 @@ const ShopScreen = () => {
   const { t } = useTranslation(); // ✅ Hook for translations
 
   return (
-    
+
     <View style={styles.container}>
-            <StatusBar backgroundColor="#f9f9f9" barStyle="dark-content" />
-      
+      <StatusBar backgroundColor="#f9f9f9" barStyle="dark-content" />
+
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>

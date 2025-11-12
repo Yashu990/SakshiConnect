@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-
   StatusBar,
   ScrollView,
   TouchableOpacity,
@@ -11,18 +10,22 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MainStackParamList } from '../Navigation/types';
+
 type NavigationProp = NativeStackNavigationProp<MainStackParamList>;
 
 const InventoryScreen = () => {
   const navigation = useNavigation<NavigationProp>();
+  const { t } = useTranslation();
+
   const activities = [
-    { id: 1, type: 'add', product: 'Product A', qty: '+15', status: 'Delivered', time: '10:32 AM' },
-    { id: 2, type: 'remove', product: 'Product B', qty: '-2', status: 'Local Sale', time: '9:55 AM' },
-    { id: 3, type: 'edit', product: 'Product C', qty: '+1', status: 'Manual Edit', time: 'Yesterday' },
-    { id: 4, type: 'add', product: 'Product D', qty: '+50', status: 'Delivered', time: 'Yesterday' },
-    { id: 5, type: 'remove', product: 'Product A', qty: '-1', status: 'Local Sale', time: '2 days ago' },
+    { id: 1, type: 'add', product: 'Product A', qty: '+15', status: t('inventory.delivered'), time: '10:32 AM' },
+    { id: 2, type: 'remove', product: 'Product B', qty: '-2', status: t('inventory.localSale'), time: '9:55 AM' },
+    { id: 3, type: 'edit', product: 'Product C', qty: '+1', status: t('inventory.manualEdit'), time: t('inventory.yesterday') },
+    { id: 4, type: 'add', product: 'Product D', qty: '+50', status: t('inventory.delivered'), time: t('inventory.yesterday') },
+    { id: 5, type: 'remove', product: 'Product A', qty: '-1', status: t('inventory.localSale'), time: t('inventory.twoDaysAgo') },
   ];
 
   return (
@@ -32,57 +35,61 @@ const InventoryScreen = () => {
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.title}>Inventory</Text>
+          <Text style={styles.title}>{t('inventory.title')}</Text>
           <Ionicons name="qr-code-outline" size={22} color="#007bff" />
         </View>
-
-        {/* Offline Alert */}
-        {/* <View style={styles.alertBox}>
-          <Ionicons name="warning-outline" size={20} color="#ff9800" style={{ marginRight: 6 }} />
-          <Text style={styles.alertText}>
-            You are currently offline. Changes will sync later.
-          </Text>
-        </View> */}
 
         {/* Cards */}
         <View style={styles.cardContainer}>
           <View style={styles.card}>
-            <TouchableOpacity onPress={()=>navigation.navigate('OdersScreen')}>
-            <Ionicons name="cube-outline" size={24} color="#007bff" />
-            <Text style={styles.cardTitle}>Orders</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('OdersScreen')}>
+              <Ionicons name="cube-outline" size={24} color="#007bff" />
+              <Text style={styles.cardTitle}>{t('inventory.orders')}</Text>
             </TouchableOpacity>
-            <Text style={styles.cardSubtitle}>Placed via distributor</Text>
+            <Text style={styles.cardSubtitle}>{t('inventory.distributorText')}</Text>
             <View style={styles.badge}>
-              <Text style={styles.badgeText}>2 pending</Text>
+              <Text style={styles.badgeText}>{t('inventory.pending')}</Text>
             </View>
-            
           </View>
 
-          <View style={styles.card} >
-            <Ionicons name="archive-outline" size={24} color="#007bff" onPress={() => navigation.navigate('StockManagePage')} />
-            <Text style={styles.cardTitle}>Stock</Text>
-            <Text style={styles.cardSubtitle}>Auto-added on delivery</Text>
+          <View style={styles.card}>
+            <Ionicons
+              name="archive-outline"
+              size={24}
+              color="#007bff"
+              onPress={() => navigation.navigate('StockManagePage')}
+            />
+            <Text style={styles.cardTitle}>{t('inventory.stock')}</Text>
+            <Text style={styles.cardSubtitle}>{t('inventory.autoAdded')}</Text>
             <View style={[styles.badge, { backgroundColor: '#e8f0ff' }]}>
-              <Text style={[styles.badgeText, { color: '#007bff' }]}>5 items</Text>
+              <Text style={[styles.badgeText, { color: '#007bff' }]}>{t('inventory.items')}</Text>
             </View>
           </View>
         </View>
 
         {/* Recent Activity */}
-        <Text style={styles.sectionTitle}>Recent Activity</Text>
+        <Text style={styles.sectionTitle}>{t('inventory.recentActivity')}</Text>
 
         <View style={styles.activityList}>
           {activities.map((item) => (
             <View key={item.id} style={styles.activityItem}>
-              <View style={[styles.iconCircle,
-                item.type === 'add' ? styles.greenCircle :
-                item.type === 'remove' ? styles.redCircle :
-                styles.grayCircle
-              ]}>
+              <View
+                style={[
+                  styles.iconCircle,
+                  item.type === 'add'
+                    ? styles.greenCircle
+                    : item.type === 'remove'
+                    ? styles.redCircle
+                    : styles.grayCircle,
+                ]}
+              >
                 <Ionicons
                   name={
-                    item.type === 'add' ? 'add' :
-                    item.type === 'remove' ? 'remove' : 'create-outline'
+                    item.type === 'add'
+                      ? 'add'
+                      : item.type === 'remove'
+                      ? 'remove'
+                      : 'create-outline'
                   }
                   size={14}
                   color={item.type === 'edit' ? '#555' : '#000'}
@@ -99,7 +106,7 @@ const InventoryScreen = () => {
               </View>
 
               <TouchableOpacity>
-                <Text style={styles.viewBtn}>View</Text>
+                <Text style={styles.viewBtn}>{t('inventory.view')}</Text>
               </TouchableOpacity>
             </View>
           ))}
@@ -119,19 +126,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   title: { fontSize: 22, fontWeight: '700', color: '#111' },
-  alertBox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff3cd',
-    padding: 10,
-    borderRadius: 10,
-    marginBottom: 20,
-  },
-  alertText: {
-    color: '#856404',
-    flex: 1,
-    fontSize: 13,
-  },
   cardContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',

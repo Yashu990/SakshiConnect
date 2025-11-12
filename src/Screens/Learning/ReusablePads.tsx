@@ -2,9 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 const ReusablePads = () => {
   const navigation = useNavigation();
+  const { t } = useTranslation();
 
   return (
     <View style={styles.wrapper}>
@@ -14,41 +16,41 @@ const ReusablePads = () => {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons name="arrow-back" size={22} color="#0F172A" />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>Reusable Pads Usage</Text>
+          <Text style={styles.headerTitle}>{t('reusablePads.title', 'Reusable Pads Usage')}</Text>
         </View>
 
         {/* Description */}
         <Text style={styles.description}>
-          Learn the correct way to use, clean, and store reusable menstrual pads.
+          {t('reusablePads.description', 'Learn the correct way to use, clean, and store reusable menstrual pads.')}
         </Text>
 
         {/* Step 1: How to Use */}
         <View style={styles.stepCard}>
           <View style={styles.stepTextContainer}>
-            <Text style={styles.stepTitle}>How to Use</Text>
+            <Text style={styles.stepTitle}>{t('reusablePads.useTitle', 'How to Use')}</Text>
 
             <Text style={styles.stepDescription}>
-              <Text style={{ fontWeight: '600' }}>Reusable pads</Text> are made of absorbent fabric layers that attach to your underwear with wings or snaps.{"\n\n"}
+              <Text style={{ fontWeight: '600' }}>{t('reusablePads.useProduct', 'Reusable pads')}</Text> {t('reusablePads.useDescription', 'are made of absorbent fabric layers that attach to your underwear with wings or snaps.')}{"\n\n"}
             </Text>
 
             <View style={styles.bulletRow}>
               <Text style={styles.bullet}>1.</Text>
-              <Text style={styles.listText}>Place the soft, absorbent side facing up on your underwear.</Text>
+              <Text style={styles.listText}>{t('reusablePads.useStep1', 'Place the soft, absorbent side facing up on your underwear.')}</Text>
             </View>
 
             <View style={styles.bulletRow}>
               <Text style={styles.bullet}>2.</Text>
-              <Text style={styles.listText}>Wrap the wings around the underside of the underwear and snap or Velcro them together.</Text>
+              <Text style={styles.listText}>{t('reusablePads.useStep2', 'Wrap the wings around the underside of the underwear and snap or Velcro them together.')}</Text>
             </View>
 
             <View style={styles.bulletRow}>
               <Text style={styles.bullet}>3.</Text>
-              <Text style={styles.listText}>Change every 4–6 hours, or sooner if the pad feels wet or heavy.</Text>
+              <Text style={styles.listText}>{t('reusablePads.useStep3', 'Change every 4–6 hours, or sooner if the pad feels wet or heavy.')}</Text>
             </View>
 
             <View style={styles.bulletRow}>
               <Text style={styles.bullet}>4.</Text>
-              <Text style={styles.listText}>Keep a wet bag if you’re outside — store used pads folded inside until you can wash them.</Text>
+              <Text style={styles.listText}>{t('reusablePads.useStep4', 'Keep a wet bag if you\'re outside — store used pads folded inside until you can wash them.')}</Text>
             </View>
           </View>
         </View>
@@ -56,31 +58,31 @@ const ReusablePads = () => {
         {/* Step 2: How to Clean */}
         <View style={styles.stepCard}>
           <View style={styles.stepTextContainer}>
-            <Text style={styles.stepTitle}>How to Clean</Text>
+            <Text style={styles.stepTitle}>{t('reusablePads.cleanTitle', 'How to Clean')}</Text>
 
             <View style={styles.bulletRow}>
               <Text style={styles.bullet}>1.</Text>
-              <Text style={styles.listText}>Rinse immediately in cold water to prevent stains from setting.</Text>
+              <Text style={styles.listText}>{t('reusablePads.cleanStep1', 'Rinse immediately in cold water to prevent stains from setting.')}</Text>
             </View>
 
             <View style={styles.bulletRow}>
               <Text style={styles.bullet}>2.</Text>
-              <Text style={styles.listText}>Soak in cold water for 30 minutes if needed (add salt or baking soda for odor control).</Text>
+              <Text style={styles.listText}>{t('reusablePads.cleanStep2', 'Soak in cold water for 30 minutes if needed (add salt or baking soda for odor control).')}</Text>
             </View>
 
             <View style={styles.bulletRow}>
               <Text style={styles.bullet}>3.</Text>
-              <Text style={styles.listText}>Hand wash or machine wash using mild, fragrance-free soap.</Text>
+              <Text style={styles.listText}>{t('reusablePads.cleanStep3', 'Hand wash or machine wash using mild, fragrance-free soap.')}</Text>
             </View>
 
             <View style={styles.bulletRow}>
               <Text style={styles.bullet}>4.</Text>
-              <Text style={styles.listText}>Avoid hot water, bleach, or fabric softener — they damage fibers and reduce absorbency.</Text>
+              <Text style={styles.listText}>{t('reusablePads.cleanStep4', 'Avoid hot water, bleach, or fabric softener — they damage fibers and reduce absorbency.')}</Text>
             </View>
 
             <View style={styles.bulletRow}>
               <Text style={styles.bullet}>5.</Text>
-              <Text style={styles.listText}>Sun-dry completely — sunlight naturally disinfects and removes odor.</Text>
+              <Text style={styles.listText}>{t('reusablePads.cleanStep5', 'Sun-dry completely — sunlight naturally disinfects and removes odor.')}</Text>
             </View>
           </View>
         </View>
@@ -88,28 +90,28 @@ const ReusablePads = () => {
         {/* Step 3: How to Store */}
         <View style={styles.stepCard}>
           <View style={styles.stepTextContainer}>
-            <Text style={styles.stepTitle}>How to Store</Text>
+            <Text style={styles.stepTitle}>{t('reusablePads.storeTitle', 'How to Store')}</Text>
 
             <View style={styles.bulletRow}>
               <Text style={styles.bullet}>•</Text>
-              <Text style={styles.listText}>Store completely dry pads in a clean cloth pouch or drawer.</Text>
+              <Text style={styles.listText}>{t('reusablePads.storeStep1', 'Store completely dry pads in a clean cloth pouch or drawer.')}</Text>
             </View>
 
             <View style={styles.bulletRow}>
               <Text style={styles.bullet}>•</Text>
-              <Text style={styles.listText}>Keep in a cool, dry place (avoid humid bathrooms).</Text>
+              <Text style={styles.listText}>{t('reusablePads.storeStep2', 'Keep in a cool, dry place (avoid humid bathrooms).')}</Text>
             </View>
 
             <View style={styles.bulletRow}>
               <Text style={styles.bullet}>•</Text>
-              <Text style={styles.listText}>Wash and sun-dry once every few weeks even when unused to keep them fresh.</Text>
+              <Text style={styles.listText}>{t('reusablePads.storeStep3', 'Wash and sun-dry once every few weeks even when unused to keep them fresh.')}</Text>
             </View>
           </View>
         </View>
 
         {/* Audio Section */}
         <View style={styles.audioCard}>
-          <Text style={styles.audioTitle}>Listen (offline)</Text>
+          <Text style={styles.audioTitle}>{t('reusablePads.audioTitle', 'Listen (offline)')}</Text>
           <TouchableOpacity style={styles.playButton}>
             <Ionicons name="play" size={28} color="#fff" />
           </TouchableOpacity>
@@ -120,12 +122,12 @@ const ReusablePads = () => {
             <Text style={styles.timeText}>1:05</Text>
             <Text style={styles.timeText}>4:20</Text>
           </View>
-          <Text style={styles.offlineText}>Audio works offline</Text>
+          <Text style={styles.offlineText}>{t('reusablePads.audioOffline', 'Audio works offline')}</Text>
         </View>
 
         {/* Video Section */}
         <View style={styles.videoCard}>
-          <Text style={styles.videoTitle}>Watch Video</Text>
+          <Text style={styles.videoTitle}>{t('reusablePads.videoTitle', 'Watch Video')}</Text>
           <View style={styles.videoBox}>
             <Image
               source={require('../../images/thum.png')}
@@ -140,9 +142,9 @@ const ReusablePads = () => {
           </View>
 
           <TouchableOpacity style={styles.youtubeButton}>
-            <Text style={styles.youtubeText}>Open on YouTube</Text>
+            <Text style={styles.youtubeText}>{t('reusablePads.youtubeButton', 'Open on YouTube')}</Text>
           </TouchableOpacity>
-          <Text style={styles.requireText}>Requires internet</Text>
+          <Text style={styles.requireText}>{t('reusablePads.requireInternet', 'Requires internet')}</Text>
         </View>
       </ScrollView>
     </View>
